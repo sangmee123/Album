@@ -1,0 +1,19 @@
+/* .albumBox {
+    background-color: white;
+    width: 500px;
+    height: 380px;
+    display: flex;
+} */
+
+button {
+    width: 80px;
+    height: 25px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10%;
+    border: none;
+    border-radius: 5px;   
+    opacity: 0.75;
+} button:hover {
+    background-color: #d8db31;
+}
