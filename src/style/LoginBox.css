@@ -4,10 +4,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 97vh; 
-    background: url("../images/mountains.jpg");
+    height: 100vh; 
+    background: url("/public/images/mountains.jpg");
     background-size: cover;
     background-position: bottom;
+    overflow-y: hidden;
 }
 
 .login-form { 
@@ -29,12 +30,12 @@ body {
     position: static;
     width: 350px;
     padding: 14px 13px 9px;
-    background-color: transparent;
+    background: transparent;
     border: none;
     border-bottom: 1.5px solid rgb(138, 137, 133);
     font-size: 18px;
     margin-bottom: 15px;
-} 
+}
 
 .int-area label {
     position: absolute;
