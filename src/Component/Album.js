@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 
@@ -11,8 +11,8 @@ const Album = () => {
     const [loading, setLoading] = useState(true); // 데이터 로딩 상태
     const navigate = useNavigate();
 
-    const onClick = () => setDarkMode(prev => !prev)
-    const handleLogout = () => navigate('/')
+    const onClick = useCallback(() => setDarkMode(prev => !prev))
+    const handleLogout = useCallback(() => navigate('/'))
 
     useEffect(() => {
         axios

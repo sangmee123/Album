@@ -26,7 +26,7 @@ const LoginBox = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // id와 password 값의 유무에 따른 활성화 상태 변수
+        // id와 password 값의 유무에 따른 활성화 상태 
         id !== '' && password !== '' ? setIsActive(true) : setIsActive(false)    
     }, [id, password]);
 
@@ -38,19 +38,18 @@ const LoginBox = () => {
         setForm(nextForm);
     }, [form]);
     const handleKeyDown = useCallback(e => {
-        console.log('id: ', id + ' password: ', password);
+        //console.log('id: ', id + ' password: ', password);
         e.key === "Enter" && access();
     }, [id, password]);
 
     const access = useCallback(e => {
-        if(id === '') alert('아이디를 입력해주세요.');
+        //console.log('id= ', id + ' password= ', password);
+        if(id === '이상미' && password === '981223') navigate('/album')
+        else if(id === '') alert('아이디를 입력해주세요.');
         else if(password === '') alert('비밀번호를 입력해주세요.');
-        else if(id === '이상미' && password === '981223') navigate('/album')
-        else {
-            navigate('/')
-            alert('아이디 또는 비밀번호가 맞지 않습니다. 다시 입력해주세요.');
-        }
+        else alert('아이디 또는 비밀번호가 맞지 않습니다. 다시 입력해주세요.');
     }, [id, password, navigate]);
+
 
     // // 상태 및 변수를 로깅
     // console.log('id:', id);
