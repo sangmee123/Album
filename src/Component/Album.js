@@ -65,7 +65,7 @@ const Album = () => {
                 className="notServer"
                 style={{ display: imageData.length === 0 ? "block" : "none" }}
             >  
-                서버가 원활하지 않습니다.
+                서버가 연결되어 있지 않습니다.
             </div>
             
             <Carousel 

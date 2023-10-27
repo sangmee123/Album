@@ -49,14 +49,14 @@ const Hint = () => {
 
     return (
         <CenterBox>            
-            <Font onClick={() => setVisibleId(!visibleId)}>
+            <Font onClick={() => setVisibleId(prev => !prev)}>
                 당신의 ID는?
             </Font>
             {visibleId && <Li>귀하의 <b>성함</b>을 입력하시면 됩니다.</Li>}
             
             <Font 
                 value="pw" 
-                onClick={() => setVisiblePw(!visiblePw)}
+                onClick={() => setVisiblePw(prev => !prev)}
             >
                 당신의 PASSWORD는?
             </Font>

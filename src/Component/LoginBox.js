@@ -27,23 +27,20 @@ const LoginBox = () => {
 
     useEffect(() => {
         // id와 password 값의 유무에 따른 활성화 상태 
-        id !== '' && password !== '' ? setIsActive(true) : setIsActive(false)    
+        setIsActive(id !== '' && password !== '');
     }, [id, password]);
 
     const handleInputChange = useCallback(e => {
-        const nextForm = {
-            ...form,
+        setForm(prevForm => ({
+            ...prevForm,
             [e.target.name]: e.target.value
-        };
-        setForm(nextForm);
-    }, [form]);
+        }));
+    }, []);
     const handleKeyDown = useCallback(e => {
-        //console.log('id: ', id + ' password: ', password);
         e.key === "Enter" && access();
     }, [id, password]);
 
     const access = useCallback(e => {
-        //console.log('id= ', id + ' password= ', password);
         if(id === '이상미' && password === '981223') navigate('/album')
         else if(id === '') alert('아이디를 입력해주세요.');
         else if(password === '') alert('비밀번호를 입력해주세요.');
