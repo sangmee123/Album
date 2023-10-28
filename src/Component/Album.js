@@ -12,7 +12,7 @@ const Album = () => {
     const navigate = useNavigate();
 
     const onClick = useCallback(() => setDarkMode(prev => !prev))
-    const handleLogout = useCallback(() => navigate('/'))
+    const handleLogout = useCallback(() => navigate('/'), [])
 
     useEffect(() => {
         axios
@@ -80,25 +80,23 @@ const Album = () => {
             >
 
                 {imageData.map(content  => (
-                    <div key={content.id}>
-                        <div className="albumBox">
-                            <div className="leftBox">   
-                                <h3>{content.title} 앨범집</h3>
-                                {content.urlLeft.map((url, urlIndex) => (
-                                    <img key={urlIndex} src={url} width={165} alt="이미지" />
-                                ))}
-                                {content.txt.map((txt, txtIndex) => (
-                                    <span className="contents" key={txtIndex}>{txt}</span>
-                                ))}
-                            </div>
+                    <div key={content.id} className="albumBox">
+                        <div className="leftBox">   
+                            <h3>{content.title} 앨범집</h3>
+                            {content.urlLeft.map((url, urlIndex) => (
+                                <img key={urlIndex} src={url} width={165} alt="이미지" />
+                            ))}
+                            {content.txt.map((txt, txtIndex) => (
+                                <span className="contents" key={txtIndex}>{txt}</span>
+                            ))}
+                        </div>
 
-                            <div className="rightBox">
-                                <h3>추억을 열어 보세요.</h3>
-                                {content.urlRight.map((url, urlIndex) => (
-                                    <img key={urlIndex} src={url} width={165} alt="이미지" />
-                                ))}
-                                <button className="entrance">펼쳐보기</button>
-                            </div>
+                        <div className="rightBox">
+                            <h3>추억을 열어 보세요.</h3>
+                            {content.urlRight.map((url, urlIndex) => (
+                                <img key={urlIndex} src={url} width={165} alt="이미지" />
+                            ))}
+                            <button className="entrance">펼쳐보기</button>
                         </div>
                     </div>
                 ))}
