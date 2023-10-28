@@ -12,7 +12,7 @@
 
 ## 서버가 Off일 때
 <p align="center">
-  <img width="550" src="https://github.com/sangmee123/Album/assets/69633033/975cb26e-dc09-42f3-80ec-6ba342f5d152">
+  <img width="550" src="">
 </p>
 
 # 🎬 시연 영상
