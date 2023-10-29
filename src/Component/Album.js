@@ -16,7 +16,7 @@ const Album = () => {
 
     useEffect(() => {
         axios
-            .get('http://localhost/album/src/GET_db.php')
+            .get('http://localhost/Album/src/Data/GET_db.php')
             .then(res => {
                 const data = JSON.parse(JSON.stringify(res.data)); 
                 //console.log(data);
