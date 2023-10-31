@@ -22,9 +22,11 @@
 
 ## 서버가 Off일 때
 
+Id 입력란은 블러 처리하였습니다.
+
 https://github.com/sangmee123/Album/assets/69633033/776d523a-6ced-4792-b24f-26afb91b6137
 
-## 🎬 시연 영상
+## 🎬 전체 시연 영상
 
 https://github.com/sangmee123/Album/assets/69633033/06f1a05d-fac0-4de6-8042-9e47530c6e1a
 
