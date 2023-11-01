@@ -1,3 +1,14 @@
+# Album
+로그인 시 앨범집을 보여줍니다.
+
+## 📗목차 
+
+- 🛠 [사용 기술 스택](#-사용-기술-스택)
+
+- 🎬 [전체 시연 영상](#-전체-시연-영상)
+  
+<br>
+
 ## 🛠 사용 기술 스택
 
 ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=blue)
