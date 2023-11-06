@@ -12,9 +12,11 @@
   
 <br>
 
-## 📝 포트폴리오 개요
+## 📝 포트폴리오 개요 
 
-<img width="800" src="https://github.com/sangmee123/Album/assets/69633033/47a2ea8c-d418-47af-9dbc-ef1f410b0351">  
+<img width="800" src="https://github.com/sangmee123/Album/assets/69633033/4a8478b2-fbd9-4611-8df7-a84ef831a97e">
+
+<img width="800" src="https://github.com/sangmee123/Album/assets/69633033/0a1543a2-37a6-427f-a740-d45ae17d030b">
 
 >**프로젝트**: 추억을 로그인. 앨범집
 >
