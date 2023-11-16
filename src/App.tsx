@@ -1,4 +1,3 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import LoginBox from './Component/LoginBox';
 import Hint from './Component/Hint';

@@ -1,28 +1,35 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import Carousel from "react-material-ui-carousel";
+import axios from 'axios';
 import '../style/Album.css';
 
+interface ImageData {
+    id: string;
+    title: string;
+    urlLeft: string[];
+    urlRight: string[];
+    txt: string[];
+}
+
 const Album = () => {
-    const [darkMode, setDarkMode] = useState(false);
-    const [imageData, setImageData] = useState([]); // 이미지 데이터 상태
+    const [darkMode, setDarkMode] = useState<boolean>(false);
+    const [imageData, setImageData] = useState<ImageData[]>([]); // 이미지 데이터 상태
     const [loading, setLoading] = useState(true); // 데이터 로딩 상태
     const navigate = useNavigate();
 
-    const onClick = useCallback(() => setDarkMode(prev => !prev))
-    const handleLogout = useCallback(() => navigate('/'), [])
+    const onClick = useCallback(() => setDarkMode(prev => !prev), []);
+    const handleLogout = useCallback(() => navigate('/'), []);
 
     useEffect(() => {
         axios
             .get('http://localhost/Album/src/Data/GET_db.php')
             .then(res => {
-                const data = JSON.parse(JSON.stringify(res.data)); 
-                //console.log(data);
-                const updatedImageData = [];
-                for(let i in data) {
-                    if(data[i].title !== '') {
+                const data = res.data;
+                const updatedImageData: ImageData[] = [];
+                console.log('data = ', data);
+                for (let i in data) {
+                    if (data[i].title !== '') {
                         updatedImageData.push({
                             "id": data[i].id,
                             "title": data[i].title,
@@ -40,6 +47,7 @@ const Album = () => {
                 setLoading(false); // 데이터 로딩 실패 시도 표시
             });
     }, []);
+
 
     if (loading) {
         // 데이터 로딩 중일 때 표시할 내용
@@ -70,13 +78,7 @@ const Album = () => {
             
             <Carousel 
                 className="crsl"
-                showArrows={true}
-                showThumbs={false}
-                centerMode={true}
-                centerSlidePercentage={80}
-                showStatus={false}
-                autoPlay={false}
-                infiniteLoop={true}    
+                autoPlay={false}  
             >
 
                 {imageData.map(content  => (

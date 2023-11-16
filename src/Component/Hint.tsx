@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
@@ -6,7 +6,7 @@ const CenterBox = styled.div`
     text-align: center;
 `;
 
-const Font = styled.span`
+const Font = styled.span<{ value?: string }>`
     font-size: 60px;
     font-family: 'Sunflower', 'sans-serif';
     &:hover {

@@ -4,21 +4,14 @@ import Hint from './Hint';
 import Album from './Album';
 import '../style/LoginBox.css';
 
+interface FormState {
+    id: string;
+    password: string;
+}
+
 const LoginBox = () => {
-    // const [ id, setId ] = useState('');
-    // const [ password, setPassword ] = useState('');
-    //
-    // 입력값 변경을 처리하는 함수
-    // const handleInputChange = (e) => {
-    //     const { name, value } = e.target;
-    //     if (name === 'id') {
-    //         setId(value);
-    //     } else if (name === 'password') {
-    //         setPassword(value);
-    //     }
-    // };
     const [ isActive, setIsActive ] = useState(false);
-    const [ form, setForm ] = useState({
+    const [ form, setForm ] = useState<FormState>({
         id: '',
         password: ''
     });
@@ -30,17 +23,17 @@ const LoginBox = () => {
         setIsActive(id !== '' && password !== '');
     }, [id, password]);
 
-    const handleInputChange = useCallback(e => {
+    const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setForm(prevForm => ({
             ...prevForm,
             [e.target.name]: e.target.value
         }));
     }, []);
-    const handleKeyDown = useCallback(e => {
+    const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
         e.key === "Enter" && access();
     }, [id, password]);
 
-    const access = useCallback(e => {
+    const access = useCallback(() => {
         if(id === '이상미' && password === '981223') navigate('/album')
         else if(id === '') alert('아이디를 입력해주세요.');
         else if(password === '') alert('비밀번호를 입력해주세요.');

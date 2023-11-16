@@ -1,5 +1,5 @@
 <?php
-    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Origin: http://localhost:3000");
     $host = 'localhost';
     $user = 'root'; 
     $pw = 'system';  
