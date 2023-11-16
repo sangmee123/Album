@@ -68,7 +68,7 @@ const Album = () => {
                 onClick={onClick}
                 alt="Icon"
             />
-            <button className='exit' onClick={handleLogout}>로그아웃</button>
+            <button type="button" className='exit' onClick={handleLogout}>로그아웃</button>
             <div 
                 className="notServer"
                 style={{ display: imageData.length === 0 ? "block" : "none" }}
@@ -98,7 +98,7 @@ const Album = () => {
                             {content.urlRight.map((url, urlIndex) => (
                                 <img key={urlIndex} src={url} width={165} alt="이미지" />
                             ))}
-                            <button className="entrance">펼쳐보기</button>
+                            <button type="button" className="entrance">펼쳐보기</button>
                         </div>
                     </div>
                 ))}

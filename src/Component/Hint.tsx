@@ -63,7 +63,7 @@ const Hint = () => {
             {visiblePw && <Li>귀하의 <b>생년월일</b>을 입력하세요.</Li>}
             
             <div>
-                <Back onClick={() => navigate(-1)}>로그인 하기</Back>
+                <Back type="button" onClick={() => navigate(-1)}>로그인 하기</Back>
             </div>
         </CenterBox>
     )
