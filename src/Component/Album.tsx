@@ -13,13 +13,13 @@ interface ImageData {
 }
 
 const Album = () => {
-    const [darkMode, setDarkMode] = useState<boolean>(false);
+    const [darkMode, setDarkMode] = useState(false);
     const [imageData, setImageData] = useState<ImageData[]>([]); // 이미지 데이터 상태
     const [loading, setLoading] = useState(true); // 데이터 로딩 상태
     const navigate = useNavigate();
 
     const onClick = useCallback(() => setDarkMode(prev => !prev), []);
-    const handleLogout = useCallback(() => navigate('/'), []);
+    const handleLogout = useCallback(() => navigate('/'), [navigate]);
 
     useEffect(() => {
         axios
