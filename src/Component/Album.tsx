@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Carousel from "react-material-ui-carousel";
 import axios from 'axios';
-import '../style/Album.css';
+import '../style/Album.scss';
 
 interface ImageData {
     id: string;
@@ -39,6 +39,7 @@ const Album = () => {
                         })
                     }
                 }
+                console.log('updateImgData = ', updatedImageData);
                 setImageData(updatedImageData);
                 setLoading(false); // 데이터 로딩이 완료됐음을 표시
             })

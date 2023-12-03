@@ -21,21 +21,6 @@ if ($imageData === null) {
     die("data.json 파일을 읽어올 수 없거나 JSON 파싱 오류가 발생했습니다.<br>");
 }
 
-// 이미지 데이터 테이블 생성 쿼리
-$createTableQuery = "CREATE TABLE IF NOT EXISTS image_data (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    urlLeft JSON NOT NULL,
-    urlRight JSON NOT NULL,
-    txt TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
-)";
-
-if ($mysqli->query($createTableQuery) === TRUE) {
-    echo "테이블이 성공적으로 생성되었습니다.<br>";
-} else {
-    echo "테이블 생성 오류: " . $mysqli->error;
-}
-
 foreach($imageData as $item) {
     $title = $item['title'];
     $urlLeft = json_encode($item['urlLeft']);

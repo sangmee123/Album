@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import Hint from './Hint';
+import Membership from './Membership';
 import Album from './Album';
-import '../style/LoginBox.css';
+import '../style/LoginBox.scss';
 
 interface FormState {
     id: string;
@@ -46,10 +47,12 @@ const LoginBox = () => {
     // console.log('password:', password);
     // console.log('isActive:', isActive);
     return (
-        <>
+        <div className="LoginBox">
             <section className="login-form">
                 <h1>추억을 로그인</h1>
                 <form 
+                    action=""
+                    method="GET"
                     onKeyDown={handleKeyDown}
                 >    
                     <div className="int-area">
@@ -58,10 +61,9 @@ const LoginBox = () => {
                             name="id" 
                             value={id}
                             onChange={handleInputChange}
-                            id="name-input" 
                             required 
                         />
-                        <label>Username</label>
+                        <label>ID</label>
                     </div>
                     <div className="int-area">
                         <input 
@@ -69,7 +71,6 @@ const LoginBox = () => {
                             name="password" 
                             value={password}
                             onChange={handleInputChange}
-                            id="password-input" 
                             required 
                         />
                         <label>Password</label>
@@ -77,22 +78,25 @@ const LoginBox = () => {
                 </form>    
                 
                 <button 
-                    id="btn-login"   
+                    className="btn-login"   
                     type="submit"           
                     onClick={access}                       // 노란색 : 회색
                     style={{ backgroundColor: isActive ? "#d8db31" : "rgba(209, 206, 206, 0.733)" }} // style 동적으로 변경
                 >
                     LOGIN
                 </button>
-                <div id="hint">
-                    <Link to="/hint">Click to get a hint</Link>
+                <div className='link'>
+                    <Link to="/hint">아이디 찾기</Link>
+                    <Link to="/hint">비밀번호 찾기</Link>
+                    <Link to="/membership">회원가입</Link>
                 </div>
             </section>
             <Routes>
                 <Route path="/album" element={<Album />}></Route>
+                <Route path="/membership" element={<Membership />}></Route>
                 <Route path="/hint" element={<Hint />}></Route>
             </Routes>
-        </>
+        </div>
     )
 };
 
