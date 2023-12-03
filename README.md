@@ -47,7 +47,7 @@
 
 ### 🌜 Dark 모드
 <p align="center">
-  <img width="800" src="https://github.com/sangmee123/Album/assets/69633033/dce91921-720c-47f2-9aec-23c8d314ce48">
+  <img width="800" src="https://github.com/sangmee123/Album/assets/69633033/d9f2e1f7-c232-4e6b-bf9b-3daeed222bf8">
 </p>
 
 ## 서버 Off일 때
