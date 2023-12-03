@@ -23,7 +23,7 @@
 >**개발 기간**: 2023. 10. 
 >
 > 로그인에 성공하면 앨범집 형태의 UI로 렌더링합니다. <br>
-> 로컬 서버를 구현하여 이미지 데이터를 불러왔습니다.  
+> 로컬 서버를 구현하여 이미지 관련 데이터를 불러왔습니다.  
 
 <br>
 
@@ -32,11 +32,11 @@
 ![TypeScript](https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=Typescript&logoColor=white)
 ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=blue)
 ![CSS3](https://img.shields.io/badge/CSS3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![SCSS](https://img.shields.io/badge/SCSS-CC6699?style=for-the-badge&logo=SASS&logoColor=white)
 ![StyledComponents](https://img.shields.io/badge/StyledComponents-DB7093?style=for-the-badge&logo=Styled-components&logoColor=white)
 <br>
 ![PHP](https://img.shields.io/badge/PHP-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)
 ![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)
-
 <br>
 
 ## 서버 On일 때
@@ -47,7 +47,7 @@
 
 ### 🌜 Dark 모드
 <p align="center">
-  <img width="800" src="https://github.com/sangmee123/Album/assets/69633033/dce91921-720c-47f2-9aec-23c8d314ce48">
+  <img width="800" src="https://github.com/sangmee123/Album/assets/69633033/d9f2e1f7-c232-4e6b-bf9b-3daeed222bf8">
 </p>
 
 ## 서버 Off일 때
