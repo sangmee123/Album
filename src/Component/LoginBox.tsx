@@ -51,8 +51,8 @@ const LoginBox = () => {
             <section className="login-form">
                 <h1>추억을 로그인</h1>
                 <form 
-                    action=""
                     method="GET"
+                    action=""
                     onKeyDown={handleKeyDown}
                 >    
                     <div className="int-area">
