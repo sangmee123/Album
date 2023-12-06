@@ -5,7 +5,7 @@ import axios from 'axios';
 import '../style/Album.scss';
 
 interface ImageData {
-    id: string;
+    idx: string;
     title: string;
     urlLeft: string[];
     urlRight: string[];
@@ -13,9 +13,10 @@ interface ImageData {
 }
 
 const Album = () => {
-    const [darkMode, setDarkMode] = useState(false);
-    const [imageData, setImageData] = useState<ImageData[]>([]); // 이미지 데이터 상태
-    const [loading, setLoading] = useState(true); // 데이터 로딩 상태
+    const [ darkMode, setDarkMode ] = useState(false);
+    const [ loading, setLoading ] = useState(true); // 데이터 로딩 상태
+    const [ userInfo, setUserInfo ] = useState('');
+    const [ imageData, setImageData ] = useState<ImageData[]>([]); // 이미지 데이터 상태
     const navigate = useNavigate();
 
     const onClick = useCallback(() => setDarkMode(prev => !prev), []);
@@ -26,12 +27,13 @@ const Album = () => {
             .get('http://localhost/Album/src/Data/GET_db.php')
             .then(res => {
                 const data = res.data;
+                setUserInfo(data[0].username);
                 const updatedImageData: ImageData[] = [];
                 // console.log('data = ', data);
                 for (let i in data) {
                     if (data[i].title !== '') {
                         updatedImageData.push({
-                            "id": data[i].id,
+                            "idx": data[i].idx,
                             "title": data[i].title,
                             "urlLeft": JSON.parse(data[i].urlLeft),
                             "urlRight": JSON.parse(data[i].urlRight),
@@ -47,6 +49,8 @@ const Album = () => {
                 console.log(error);
                 setLoading(false); // 데이터 로딩 실패 시도 표시
             });
+
+        
     }, []);
 
 
@@ -69,7 +73,8 @@ const Album = () => {
                 onClick={onClick}
                 alt="Icon"
             />
-            <button type="button" className='exit' onClick={handleLogout}>로그아웃</button>
+            <button type="button" className='exit' onClick={handleLogout}><b>{userInfo}님</b><br />로그아웃</button>
+
             <div 
                 className="notServer"
                 style={{ display: imageData.length === 0 ? "block" : "none" }}
@@ -83,7 +88,7 @@ const Album = () => {
             >
 
                 {imageData.map(content  => (
-                    <div key={content.id} className="albumBox">
+                    <div key={content.idx} className="albumBox">
                         <div className="leftBox">   
                             <h3>{content.title} 앨범집</h3>
                             {content.urlLeft.map((url, urlIndex) => (

@@ -21,19 +21,24 @@ if ($imageData === null) {
     die("data.json 파일을 읽어올 수 없거나 JSON 파싱 오류가 발생했습니다.<br>");
 }
 
-foreach($imageData as $item) {
-    $title = $item['title'];
-    $urlLeft = json_encode($item['urlLeft']);
-    $urlRight = json_encode($item['urlRight']);
-    $txt = json_encode($item['txt'], JSON_UNESCAPED_UNICODE);
+// 사용자 정보
+$user_id = $imageData[0]['user_id'];
+$username = $imageData[0]['username'];
+
+// 앨범 데이터 삽입
+foreach ($imageData[0]['albums'] as $album) {
+    $title = $album['title'];
+    $urlLeft = json_encode($album['urlLeft']);
+    $urlRight = json_encode($album['urlRight']);
+    $txt = json_encode($album['txt'], JSON_UNESCAPED_UNICODE);
 
     // 이미 데이터가 있는지 확인
-    $checkDuplicateQuery = "SELECT * FROM image_data WHERE title = '$title'";
+    $checkDuplicateQuery = "SELECT * FROM image_data WHERE title = '$title' AND user_id = '$user_id'";
     $duplicateResult = $mysqli->query($checkDuplicateQuery);
 
     if ($duplicateResult->num_rows == 0) {
-        $insertQuery = "INSERT INTO image_data (title, urlLeft, urlRight, txt) 
-        VALUES ('$title', '$urlLeft', '$urlRight', '$txt')";
+        $insertQuery = "INSERT INTO image_data (user_id, username, title, urlLeft, urlRight, txt) 
+        VALUES ('$user_id', '$username', '$title', '$urlLeft', '$urlRight', '$txt')";
 
         if ($mysqli->query($insertQuery) === TRUE) {
             echo "데이터가 성공적으로 삽입되었습니다.<br>";
