@@ -27,7 +27,7 @@ const Album = () => {
             .then(res => {
                 const data = res.data;
                 const updatedImageData: ImageData[] = [];
-                console.log('data = ', data);
+                // console.log('data = ', data);
                 for (let i in data) {
                     if (data[i].title !== '') {
                         updatedImageData.push({
@@ -39,7 +39,7 @@ const Album = () => {
                         })
                     }
                 }
-                console.log('updateImgData = ', updatedImageData);
+                // console.log('updateImgData = ', updatedImageData);
                 setImageData(updatedImageData);
                 setLoading(false); // 데이터 로딩이 완료됐음을 표시
             })

@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import axios from 'axios';
 
 const MembershipBox = styled.div`
-    width: 430px;
+    width: 450px;
     height: 460px;
     font-size: 15px;
-    background-color: rgba(255, 179, 128, 0.5);
+    background-color: rgba(255, 179, 128, 0.8);
     border-radius: 5px;
     margin: 0 auto;
 `;
@@ -20,9 +19,14 @@ const Form = styled.form`
     margin-top: 20px;
 `
 
-const Label = styled.label`
+const Label = styled.label<{ phone?: string }>`
     font-size: 14px;
-    margin-left: 56px;
+    margin-left: 60px;
+    ${props => 
+      props.phone === "phoneLabel" &&
+      css`
+        margin-left: 35px;
+    `}
 `;
 
 const Input = styled.input`
@@ -35,6 +39,28 @@ const Input = styled.input`
     margin: 0 auto;
     margin-top: 5px;
     margin-bottom: 10px;
+    ${props =>
+     props.name === 'username' &&
+     css`
+       width: 70%;
+       margin-left: 56px;
+    `}
+`;
+
+const Conlumn = styled.div`
+    display: inline-block;
+    width: 100%;
+    height: 70px;
+    margin: 0 auto;
+`;
+const ColumnName = styled.div`    
+    display: inline-block;
+    width: 38%;
+`;
+const ColumnPhone = styled.div`    
+    display: inline-block;
+    width: 55%;
+    margin-left: 2px;
 `;
 
 const Register = styled.button<{ checked: boolean }>`
@@ -90,7 +116,8 @@ interface FormState {
     id: string,
     password: string,
     password_confirm: string,
-    username: string
+    username: string,
+    phone: string,
 };
 interface ActiveState {
     confirmPassword: boolean,
@@ -104,9 +131,10 @@ const Membership = () => {
         id: '',
         password: '',
         password_confirm: '',
-        username: ''
+        username: '',
+        phone: ''
     });
-    const { id, password, password_confirm, username } = form;
+    const { id, password, password_confirm, username, phone } = form;
 
     // 비밀번호 불일치 문구 & 회원가입 버튼 색상 => 활성화 상태 변수
     const [ isActive, setIsActive ] = useState<ActiveState>({
@@ -121,20 +149,27 @@ const Membership = () => {
             // 같이 같으면 비밀번호 불일치 문구 숨기기
             confirmPassword: password_confirm === password, 
 
-            // id, password, password_confirm, username 값이 모두 있으면 회원가입 버튼 색상 활성화
+            // id, password, password_confirm, username, phone 값이 모두 있으면 회원가입 버튼 색상 활성화
             register: 
-                id !== '' && password !== '' && 
-                password_confirm !== '' && username !== '' &&
-                confirmPassword === true // 비밀번호 불일치 문구까지 안 보여야 회원가입 버튼 색상 활성화
+                id !== '' && password !== '' 
+                && password_confirm !== '' && username !== '' 
+                && confirmPassword === true // 비밀번호 불일치 문구까지 안 보여야 회원가입 버튼 색상 활성화
+                && phone !== ''
         }));
-    }, [id, password_confirm, password, username, confirmPassword]);
+    }, [id, password_confirm, password, username, confirmPassword, phone]);
 
     const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        setForm(prev => ({
-            ...prev,
-            [e.target.name]: e.target.value
-        }));
-    }, []);
+        const { name, value } = e.target;
+    
+        if (name === "phone") {
+            // 휴대폰 번호 입력 시 자동으로 하이픈 추가
+            const phoneNum = value.replace(/[^0-9]/g, '').replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
+                                  .replace(/(\-{1,2})$/g, '');
+            setForm(prev => ({ ...prev, [name]: phoneNum }));
+        } else {
+            setForm(prev => ({ ...prev, [name]: value }));
+        }
+    }, []);    
 
 
     // // 상태 및 변수를 로깅
@@ -159,7 +194,6 @@ const Membership = () => {
                         type="text" 
                         name="id" 
                         onChange={handleInputChange}
-                        placeholder="아이디를 입력해주세요" 
                         required
                     />
 
@@ -168,7 +202,6 @@ const Membership = () => {
                         type="password" 
                         name="password" 
                         onChange={handleInputChange}
-                        placeholder="비밀번호를 입력해주세요" 
                         required
                     />
 
@@ -177,18 +210,32 @@ const Membership = () => {
                         type="password" 
                         name="password_confirm" 
                         onChange={handleInputChange}
-                        placeholder="비밀번호를 입력해주세요" 
                         required
                     />
 
-                    <Label>이름</Label>
-                    <Input 
-                        type="text" 
-                        name="username" 
-                        onChange={handleInputChange}
-                        placeholder="이름을 입력해주세요" 
-                        required
-                    />
+                    <Conlumn>
+                        <ColumnName>
+                            <Label>이름</Label>
+                            <Input
+                                type="text" 
+                                name="username" 
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </ColumnName>
+
+                        <ColumnPhone>
+                            <Label phone="phoneLabel">휴대폰 번호</Label>
+                            <Input
+                                type="text" 
+                                name="phone" 
+                                maxLength={13}
+                                value={form.phone}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </ColumnPhone>
+                    </Conlumn>
 
                     <Register 
                         checked={register}

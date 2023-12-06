@@ -16,16 +16,18 @@
 
     $id = $_POST['id'];
     $password = $_POST['password'];
-    $username = $_POST['username'];
+    $username = $_POST['username'];    
+    $phone = $_POST['phone'];
     $created = date("Y-m-d H:i:s"); // 한국 서버의 현재 시간
     
 
     // 이미 데이터가 있는지 확인
-    $checkDuplicateQuery = "SELECT id from users WHERE id = '$id'";
+    $checkDuplicateQuery = "SELECT id FROM users WHERE id = '$id'";
     $duplicateQuery = $mysqli->query($checkDuplicateQuery);
 
     if($duplicateQuery->num_rows == 0) {
-        $insertQuery = "INSERT INTO users(id, password, username, created) VALUES ('$id', '$password', '$username', '$created')";
+        $insertQuery = "INSERT INTO users(id, password, username, phone, created) 
+        VALUES ('$id', '$password', '$username', '$phone', '$created')";
     
         if ($mysqli->query($insertQuery) === TRUE) {
             echo("
