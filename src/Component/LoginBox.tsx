@@ -32,57 +32,6 @@ const LoginBox = () => {
         }));
     }, []);    
 
-    // const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    //     e.key === "Enter" && access();
-    // }, [id, password]);
-    // const access = useCallback(() => {
-    //     if(id === '이상미' && password === '981223') navigate('/album')
-    //     else if(id === '') alert('아이디를 입력해주세요.');
-    //     else if(password === '') alert('비밀번호를 입력해주세요.');
-    //     else alert('아이디 또는 비밀번호가 맞지 않습니다. 다시 입력해주세요.');
-    // }, [id, password, navigate]);
-
-    const handleFormSubmit = useCallback(async (e: React.KeyboardEvent) => {
-        if (e.key === "Enter" && isActive) {
-            try {
-                const response = await axios.post('http://localhost/Album/src/Data/login.php', {
-                    id,
-                    password,
-                });
-
-                if (response.data.success) {
-                    alert('로그인 성공');
-                    navigate('/album');
-                } else {
-                    alert(`result = ${response.data.message}`);
-                }
-            } catch (error) {
-                console.error('로그인 요청 실패:', error);
-            }
-        }
-    }, [isActive, id, password, navigate]);
-
-    const handleFormClick = useCallback(async () => {
-        if (isActive) {
-            try {
-                const response = await axios.post('http://localhost/Album/src/Data/login.php', {
-                    id,
-                    password,
-                });
-
-                if (response.data.success) {
-                    alert('로그인 성공');
-                    navigate('/album');
-                } else {
-                    alert(`result = ${response.data.message}`);
-                }
-            } catch (error) {
-                console.error('로그인 요청 실패:', error);
-            }
-        }
-    }, [isActive, id, password, navigate]);
-
-
     // // 상태 및 변수를 로깅
     // console.log('id:', id);
     // console.log('password:', password);
@@ -93,16 +42,16 @@ const LoginBox = () => {
                 <h1>추억을 로그인</h1>
                 <form 
                     method="POST"
-                    action="http://localhost/Album/src/Data/login.php"
+                    action={'http://localhost/Album/src/Data/login.php'}
+                    onSubmit={(e) => isActive === false && e.preventDefault()}
                     // onKeyDown={handleKeyDown}
                 >    
                     <div className="int-area">
                         <input 
                             type="text" 
                             name="id" 
-                            value={id}
                             onChange={handleInputChange}
-                            onKeyDown={handleFormSubmit}
+                            // onKeyDown={handleFormSubmit}
                             required 
                         />
                         <label>ID</label>
@@ -111,24 +60,22 @@ const LoginBox = () => {
                         <input 
                             type="password" 
                             name="password" 
-                            value={password}
                             onChange={handleInputChange}
-                            onKeyDown={handleFormSubmit}
+                            // onKeyDown={handleFormSubmit}
                             required 
                         />
                         <label>Password</label>
                     </div>
+                    <button 
+                        className={`btn-login ${isActive ? 'active' : 'inactive'}`}
+                        // onKeyDown={handleFormSubmit}
+                        // onClick={handleFormClick}
+                        // onClick={access}                
+                    >
+                        LOGIN
+                    </button>
                 </form>    
                 
-                <button 
-                    className="btn-login" 
-                    onKeyDown={handleFormSubmit}
-                    onClick={handleFormClick}
-                    // onClick={access}                       // 노란색 : 회색
-                    style={{ backgroundColor: isActive ? "#d8db31" : "rgba(209, 206, 206, 0.733)" }} // style 동적으로 변경
-                >
-                    LOGIN
-                </button>
                 <div className='link'>
                     <Link to="/hint">아이디 찾기</Link>
                     <Link to="/hint">비밀번호 찾기</Link>

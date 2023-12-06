@@ -63,6 +63,13 @@ body {
         font-weight: bold;
         transition: all 0.5s;
         margin-bottom: 10px;
+        &.active {
+            background-color: #d8db31;
+        }
+    
+        &.inactive {
+            background-color: rgba(209, 206, 206, 0.733);
+        }
     }
     
     .link { 
@@ -72,7 +79,7 @@ body {
             color: black;
             margin: 10px;
             &:hover {
-                color: rgb(0, 255, 17);
+                color: #d8db31;
             }
         }   
     }
