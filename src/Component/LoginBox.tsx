@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import Hint from './Hint';
 import Membership from './Membership';
 import Album from './Album';
@@ -44,14 +43,12 @@ const LoginBox = () => {
                     method="POST"
                     action={'http://localhost/Album/src/Data/login.php'}
                     onSubmit={(e) => isActive === false && e.preventDefault()}
-                    // onKeyDown={handleKeyDown}
                 >    
                     <div className="int-area">
                         <input 
                             type="text" 
                             name="id" 
                             onChange={handleInputChange}
-                            // onKeyDown={handleFormSubmit}
                             required 
                         />
                         <label>ID</label>
@@ -61,17 +58,11 @@ const LoginBox = () => {
                             type="password" 
                             name="password" 
                             onChange={handleInputChange}
-                            // onKeyDown={handleFormSubmit}
                             required 
                         />
                         <label>Password</label>
                     </div>
-                    <button 
-                        className={`btn-login ${isActive ? 'active' : 'inactive'}`}
-                        // onKeyDown={handleFormSubmit}
-                        // onClick={handleFormClick}
-                        // onClick={access}                
-                    >
+                    <button className={`btn-login ${isActive ? 'active' : 'inactive'}`}>
                         LOGIN
                     </button>
                 </form>    
