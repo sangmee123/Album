@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Hint from './Hint';
 import Membership from './Membership';
 import Album from './Album';
@@ -29,7 +30,32 @@ const LoginBox = () => {
             ...prevForm,
             [e.target.name]: e.target.value
         }));
-    }, []);    
+    }, []); 
+
+
+    const handleFormSubmit = useCallback((e: React.FormEvent) => {
+        const formData = new FormData();
+        formData.append('id', form.id); 
+        formData.append('password', form.password); 
+
+        e.preventDefault();
+        if (isActive) {
+            axios.post('http://localhost/Album/src/Data/login_check.php', formData)
+            .then(res => {
+                if (res.data.success) { 
+                    // 로그인 성공 시
+                    alert(res.data.message);
+                    navigate('/album');
+                } else { 
+                    // 로그인 실패
+                    alert(res.data.message);
+                }
+            })
+            .catch(error => {
+                alert("서버가 연결되어 있지 않습니다.");
+            });
+        }
+    }, [isActive, form, navigate]);
 
     // // 상태 및 변수를 로깅
     // console.log('id:', id);
@@ -39,30 +65,32 @@ const LoginBox = () => {
         <div className="LoginBox">
             <section className="login-form">
                 <h1>추억을 로그인</h1>
-                <form 
-                    method="POST"
-                    action={'http://localhost/Album/src/Data/login.php'}
-                    onSubmit={(e) => isActive === false && e.preventDefault()}
-                >    
+                <form onSubmit={handleFormSubmit}>    
                     <div className="int-area">
                         <input 
-                            type="text" 
+                            type="text"
+                            id="id" 
                             name="id" 
                             onChange={handleInputChange}
                             required 
                         />
-                        <label>ID</label>
+                        <label htmlFor="id">ID</label>
                     </div>
                     <div className="int-area">
                         <input 
                             type="password" 
+                            id="password"
                             name="password" 
                             onChange={handleInputChange}
                             required 
                         />
-                        <label>Password</label>
+                        <label htmlFor="password">Password</label>
                     </div>
-                    <button className={`btn-login ${isActive ? 'active' : 'inactive'}`}>
+                    <button 
+                        className={`btn-login ${isActive ? 'active' : 'inactive'}`}
+                        disabled={!isActive}
+                    >
+                        
                         LOGIN
                     </button>
                 </form>    
@@ -74,7 +102,7 @@ const LoginBox = () => {
                 </div>
             </section>
             <Routes>
-                <Route path="/album" element={<Album />}></Route>
+                <Route path="/album" element={<Album />} />
                 <Route path="/membership" element={<Membership />}></Route>
                 <Route path="/hint" element={<Hint />}></Route>
             </Routes>

@@ -1,73 +1,67 @@
 [
     {
-        "user_id": "oeanb",
-        "username": "이상미",
-        "albums": [
-            {
-                "title": "고양이",
-                "urlLeft": [
-                    "images/cat/cat_pretty.jpg",
-                    "images/cat/cat.jpg",
-                    "images/cat/cat_closeup.jpg",
-                    "images/cat/cat_box.jpg"
-                ],
-                "urlRight": [
-                    "images/cat/cat_sleep.jpg",
-                    "images/cat/cat_stand.jpg"
-                ],
-                "txt": [
-                    "울 집 귀여운 고양이입니당.",
-                    "이름은 호박이😻"
-                ]
-            },
-            { 
-                "title": "졸업식",
-                "urlLeft": [
-                    "images/graduation/graduation1.jpg",
-                    "images/graduation/graduation4.jpg"
-                ],
-                "urlRight": [
-                    "images/graduation/graduation2.jpg",
-                    "images/graduation/graduation3.jpg"
-                ],
-                "txt": [
-                    "2023년 8월 31일🎉",
-                    "졸업식 날 찍은 사진입니다."
-                ]
-            },
-            {
-                "title": "셀카",
-                "urlLeft": [
-                    "images/myFace/face1.jpg",
-                    "images/myFace/face2.jpg"
-                ],
-                "urlRight": [
-                    "images/myFace/face3.jpg",
-                    "images/myFace/face4.jpg",
-                    "images/myFace/face6.jpg"
-                ],
-                "txt": [
-                    "내 얼굴🤗",
-                    "^ㅇ^"
-                ]
-            },
-            {  
-                "title": "내가 먹은 음식",
-                "urlLeft": [
-                    "images/food/food7.jpg",
-                    "images/food/food1.jpg",
-                    "images/food/food2.jpg"
-                ],
-                "urlRight": [
-                    "images/food/food5.jpg",
-                    "images/food/food4.jpg",
-                    "images/food/food3.jpg",
-                    "images/food/food6.jpg"
-                ],
-                "txt": [
-                    "맛있겠다. 다시 보자.🍰"
-                ]
-            }
+        "title": "고양이",
+        "urlLeft": [
+            "images/cat/cat_pretty.jpg",
+            "images/cat/cat.jpg",
+            "images/cat/cat_closeup.jpg",
+            "images/cat/cat_box.jpg"
+        ],
+        "urlRight": [
+            "images/cat/cat_sleep.jpg",
+            "images/cat/cat_stand.jpg"
+        ],
+        "txt": [
+            "울 집 귀여운 고양이입니당.",
+            "이름은 호박이😻"
+        ]
+    },
+    { 
+        "title": "졸업식",
+        "urlLeft": [
+            "images/graduation/graduation1.jpg",
+            "images/graduation/graduation4.jpg"
+        ],
+        "urlRight": [
+            "images/graduation/graduation2.jpg",
+            "images/graduation/graduation3.jpg"
+        ],
+        "txt": [
+            "2023년 8월 31일🎉",
+            "졸업식 날 찍은 사진입니다."
+        ]
+    },
+    {
+        "title": "셀카",
+        "urlLeft": [
+            "images/myFace/face1.jpg",
+            "images/myFace/face2.jpg"
+        ],
+        "urlRight": [
+            "images/myFace/face3.jpg",
+            "images/myFace/face4.jpg",
+            "images/myFace/face6.jpg"
+        ],
+        "txt": [
+            "내 얼굴🤗",
+            "^ㅇ^"
+        ]
+    },
+    {  
+        "title": "내가 먹은 음식",
+        "urlLeft": [
+            "images/food/food7.jpg",
+            "images/food/food1.jpg",
+            "images/food/food2.jpg"
+        ],
+        "urlRight": [
+            "images/food/food5.jpg",
+            "images/food/food4.jpg",
+            "images/food/food3.jpg",
+            "images/food/food6.jpg"
+        ],
+        "txt": [
+            "맛있겠다. 다시 보자.🍰"
         ]
     }
 ]

@@ -12,7 +12,7 @@ interface ImageData {
     txt: string[];
 }
 
-const Album = () => {
+const Album = ()  => {
     const [ darkMode, setDarkMode ] = useState(false);
     const [ loading, setLoading ] = useState(true); // 데이터 로딩 상태
     const [ userInfo, setUserInfo ] = useState('');
@@ -27,11 +27,10 @@ const Album = () => {
             .get('http://localhost/Album/src/Data/GET_db.php')
             .then(res => {
                 const data = res.data;
-                setUserInfo(data[0].username);
                 const updatedImageData: ImageData[] = [];
                 // console.log('data = ', data);
-                for (let i in data) {
-                    if (data[i].title !== '') {
+                for(let i in data) {
+                    if(data[i].title !== '') {
                         updatedImageData.push({
                             "idx": data[i].idx,
                             "title": data[i].title,
@@ -49,10 +48,20 @@ const Album = () => {
                 console.log(error);
                 setLoading(false); // 데이터 로딩 실패 시도 표시
             });
-
-        
     }, []);
 
+    // useEffect(() => {
+    //     // 로그인 정보 가져오기
+    //     axios
+    //     .get('http://localhost/Album/src/Data/login.php')
+    //     .then(res => {
+    //         console.log(res.data);
+    //         setUserInfo(res.data.username);
+    //     })
+    //     .catch(error => {
+    //         console.error(error);
+    //     });
+    // }, []);
 
     if (loading) {
         // 데이터 로딩 중일 때 표시할 내용
@@ -73,7 +82,13 @@ const Album = () => {
                 onClick={onClick}
                 alt="Icon"
             />
-            <button type="button" className='exit' onClick={handleLogout}><b>{userInfo}님</b><br />로그아웃</button>
+            <button 
+                type="button" 
+                className='exit' 
+                onClick={handleLogout}
+            >
+                <b>{userInfo}님</b><br />로그아웃
+            </button>
 
             <div 
                 className="notServer"

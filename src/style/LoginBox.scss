@@ -65,6 +65,9 @@ body {
         margin-bottom: 10px;
         &.active {
             background-color: #d8db31;
+            &:active {
+                background-color: #a0a224;
+            }
         }
     
         &.inactive {
