@@ -53,8 +53,6 @@
 
 ## 서버 Off일 때
 
-Id 입력란은 블러 처리하였습니다.
-
 https://github.com/sangmee123/Album/assets/69633033/6c9a909d-b296-4f7a-9533-0b61dcd13345
 
 <br>
