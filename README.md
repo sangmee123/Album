@@ -14,9 +14,9 @@
 
 ## 📝 포트폴리오 개요 
 
-<img width="800" src="https://github.com/sangmee123/Album/assets/69633033/4a8478b2-fbd9-4611-8df7-a84ef831a97e">
+<img width="800" src="https://github.com/sangmee123/Album/assets/69633033/15fcf57d-ffcd-4a31-8385-cc8c2ff70f78">
 
-<img width="800" src="https://github.com/sangmee123/Album/assets/69633033/0a1543a2-37a6-427f-a740-d45ae17d030b">
+<img width="800" src="https://github.com/sangmee123/Album/assets/69633033/7cf40979-6826-44d1-ac94-1abbcb687270">
 
 >**프로젝트**: 추억을 로그인. 앨범집
 >
@@ -37,24 +37,25 @@
 <br>
 ![PHP](https://img.shields.io/badge/PHP-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)
 ![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)
+
 <br>
 
 ## 서버 On일 때
 ### 🌞 Light 모드
 <p align="center">
-  <img width="800" src="https://github.com/sangmee123/Album/assets/69633033/f914521b-5753-4847-8c91-8b7f1e675281">
+  <img width="800" src="https://github.com/sangmee123/Album/assets/69633033/5400a9a5-55f8-40d9-b21f-0d4e5b77073d">
 </p>
 
 ### 🌜 Dark 모드
 <p align="center">
-  <img width="800" src="https://github.com/sangmee123/Album/assets/69633033/d9f2e1f7-c232-4e6b-bf9b-3daeed222bf8">
+  <img width="800" src="https://github.com/sangmee123/Album/assets/69633033/87971c41-ee8f-49cc-a20b-85f7b8cde12f">
 </p>
 
 ## 서버 Off일 때
 
 Id 입력란은 블러 처리하였습니다.
 
-https://github.com/sangmee123/Album/assets/69633033/776d523a-6ced-4792-b24f-26afb91b6137
+https://github.com/sangmee123/Album/assets/69633033/6c9a909d-b296-4f7a-9533-0b61dcd13345
 
 <br>
 
