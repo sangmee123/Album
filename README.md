@@ -6,17 +6,21 @@
 - 📝 [개요](#-포트폴리오-개요)
 
 - 🛠 [사용 기술 스택](#-사용-기술-스택)
+- 👤 [사용자 계정](#-사용자-계정)
+  - 🎬 [회원가입](#-회원가입)
+  - [아이디 찾기](#아이디-찾기)
+  - [비밀번호 찾기](#비밀번호-찾기)
 - [서버 On일 때](#서버-on일-때)
-- [서버 Off일 때](#서버-off일-때)
-- 🎬 [전체 시연 영상](#-전체-시연-영상)
+  - 🌞 [Light 모드](#-light-모드)
+  - 🌜 [Dark 모드](#-dark-모드)
+- 🎬 [서버 Off일 때](#-서버-off일-때)
+- 🎬 [로그인 과정 시연 영상](#-로그인-과정-시연-영상)
   
 <br>
 
 ## 📝 포트폴리오 개요 
 
 <img width="800" src="https://github.com/sangmee123/Album/assets/69633033/15fcf57d-ffcd-4a31-8385-cc8c2ff70f78">
-
-<img width="800" src="https://github.com/sangmee123/Album/assets/69633033/7cf40979-6826-44d1-ac94-1abbcb687270">
 
 >**프로젝트**: 추억을 로그인. 앨범집
 >
@@ -45,6 +49,24 @@
 
 <br>
 
+## 👤 사용자 계정
+### 🎬 회원가입
+
+---
+
+### 아이디 찾기
+
+<img width="800" src="https://github.com/sangmee123/Album/assets/69633033/f1167f7d-d255-4c5d-96db-0e6e1d672fcb"><br>
+사용자 **이름**과 **휴대폰 번호**를 입력하여 아이디를 찾을 수 있습니다.
+
+---
+
+### 비밀번호 찾기
+<img width="800" src="https://github.com/sangmee123/Album/assets/69633033/8ee62a7f-bf20-473c-bdb6-1849ae15e7cf"><br>
+사용자 **아이디**와 **휴대폰 번호**를 입력하여 비밀번호를 재설정할 수 있습니다.
+
+<br>
+
 ## 서버 On일 때
 ### 🌞 Light 모드
 <p align="center">
@@ -56,13 +78,13 @@
   <img width="800" src="https://github.com/sangmee123/Album/assets/69633033/87971c41-ee8f-49cc-a20b-85f7b8cde12f">
 </p>
 
-## 서버 Off일 때
+## 🎬 서버 Off일 때
 
 https://github.com/sangmee123/Album/assets/69633033/6c9a909d-b296-4f7a-9533-0b61dcd13345
 
 <br>
 
-## 🎬 전체 시연 영상
+## 🎬 로그인 과정 시연 영상
 
 https://github.com/sangmee123/Album/assets/69633033/06f1a05d-fac0-4de6-8042-9e47530c6e1a
 
