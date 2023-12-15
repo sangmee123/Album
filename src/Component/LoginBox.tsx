@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Hint from './Hint';
-import Membership from './Membership';
+import HintId from './StyledComponents/HintId';
+import HintPw from './StyledComponents/HintPw';
+import Membership from './StyledComponents/Membership';
 import Album from './Album';
 import '../style/LoginBox.scss';
 
@@ -32,27 +33,25 @@ const LoginBox = () => {
         }));
     }, []); 
 
-
     const handleFormSubmit = useCallback((e: React.FormEvent) => {
-        const formData = new FormData();
-        formData.append('id', form.id); 
-        formData.append('password', form.password); 
-
         e.preventDefault();
+        const formElement = e.target as HTMLFormElement;  
+        const formData = new FormData(formElement); 
+    
         if (isActive) {
             axios.post('http://localhost/Album/src/Data/login_check.php', formData)
             .then(res => {
                 if (res.data.success) { 
                     // 로그인 성공 시
                     alert(res.data.message);
-                    navigate('/album');
+                    navigate('/album', { state: { id } });
                 } else { 
                     // 로그인 실패
                     alert(res.data.message);
                 }
             })
             .catch(error => {
-                alert("서버가 연결되어 있지 않습니다.");
+                navigate('/album', { state: { id } });
             });
         }
     }, [isActive, form, navigate]);
@@ -86,25 +85,22 @@ const LoginBox = () => {
                         />
                         <label htmlFor="password">Password</label>
                     </div>
-                    <button 
-                        className={`btn-login ${isActive ? 'active' : 'inactive'}`}
-                        disabled={!isActive}
-                    >
-                        
+                    <button className={`btn-login ${isActive ? 'active' : 'inactive'}`}>
                         LOGIN
                     </button>
                 </form>    
                 
                 <div className='link'>
-                    <Link to="/hint">아이디 찾기</Link>
-                    <Link to="/hint">비밀번호 찾기</Link>
+                    <Link to="/id">아이디 찾기</Link>
+                    <Link to="/pw">비밀번호 찾기</Link>
                     <Link to="/membership">회원가입</Link>
                 </div>
             </section>
             <Routes>
                 <Route path="/album" element={<Album />} />
+                <Route path="/id" element={<HintId />}></Route>
+                <Route path="/pw" element={<HintPw />}></Route>
                 <Route path="/membership" element={<Membership />}></Route>
-                <Route path="/hint" element={<Hint />}></Route>
             </Routes>
         </div>
     )

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Carousel from "react-material-ui-carousel";
 import axios from 'axios';
 import '../style/Album.scss';
@@ -15,53 +15,61 @@ interface ImageData {
 const Album = ()  => {
     const [ darkMode, setDarkMode ] = useState(false);
     const [ loading, setLoading ] = useState(true); // 데이터 로딩 상태
-    const [ userInfo, setUserInfo ] = useState('');
+    const [ btnLogout, setBtnLogout ] = useState(true); // 로그아웃 버튼 상태
+    const [ userInfo, setUserInfo ] = useState(''); // 사용자 이름 상태 
     const [ imageData, setImageData ] = useState<ImageData[]>([]); // 이미지 데이터 상태
-    const navigate = useNavigate();
 
-    const onClick = useCallback(() => setDarkMode(prev => !prev), []);
-    const handleLogout = useCallback(() => navigate('/'), [navigate]);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const userId = location.state.id;
 
     useEffect(() => {
-        axios
-            .get('http://localhost/Album/src/Data/GET_db.php')
-            .then(res => {
-                const data = res.data;
-                const updatedImageData: ImageData[] = [];
-                // console.log('data = ', data);
-                for(let i in data) {
-                    if(data[i].title !== '') {
-                        updatedImageData.push({
-                            "idx": data[i].idx,
-                            "title": data[i].title,
-                            "urlLeft": JSON.parse(data[i].urlLeft),
-                            "urlRight": JSON.parse(data[i].urlRight),
-                            "txt": JSON.parse(data[i].txt)
-                        })
-                    }
+        // 로그인 정보 가져오기
+        const postData = new FormData();
+        postData.append('id', userId);
+
+        axios.post('http://localhost/Album/src/Data/login.php', postData)
+        .then(res => {
+            const data = res.data;
+            if(data.success) {
+                setUserInfo(data.username + '님');
+            } 
+        })
+        .catch(error => {
+            setBtnLogout(false);
+        });
+
+        // 이미지 관련 데이터 불러오기
+        axios.get('http://localhost/Album/src/Data/GET_db.php')
+        .then(res => {
+            const data = res.data;
+            const updatedImageData: ImageData[] = [];
+            for(let i in data) {
+                if(data[i].title !== '') {
+                    updatedImageData.push({
+                        "idx": data[i].idx,
+                        "title": data[i].title,
+                        "urlLeft": JSON.parse(data[i].urlLeft),
+                        "urlRight": JSON.parse(data[i].urlRight),
+                        "txt": JSON.parse(data[i].txt)
+                    })
                 }
-                // console.log('updateImgData = ', updatedImageData);
-                setImageData(updatedImageData);
-                setLoading(false); // 데이터 로딩이 완료됐음을 표시
-            })
-            .catch(error => {
-                console.log(error);
-                setLoading(false); // 데이터 로딩 실패 시도 표시
-            });
+            }
+            // console.log('updateImgData = ', updatedImageData);
+            setImageData(updatedImageData);
+            setLoading(false); // 데이터 로딩이 완료됐음을 표시
+        })
+        .catch(error => {
+            console.log(error);
+            setLoading(false); // 데이터 로딩 실패 시도 표시
+        });
     }, []);
 
-    // useEffect(() => {
-    //     // 로그인 정보 가져오기
-    //     axios
-    //     .get('http://localhost/Album/src/Data/login.php')
-    //     .then(res => {
-    //         console.log(res.data);
-    //         setUserInfo(res.data.username);
-    //     })
-    //     .catch(error => {
-    //         console.error(error);
-    //     });
-    // }, []);
+    const onClick = useCallback(() => setDarkMode(prev => !prev), []);
+    const handleLogout = useCallback((e: React.FormEvent) => {
+        e.preventDefault();
+        navigate('/');
+    }, [navigate]);
 
     if (loading) {
         // 데이터 로딩 중일 때 표시할 내용
@@ -82,13 +90,15 @@ const Album = ()  => {
                 onClick={onClick}
                 alt="Icon"
             />
-            <button 
-                type="button" 
-                className='exit' 
-                onClick={handleLogout}
+            <form 
+                method="POST" 
+                action="http://localhost/Album/src/Data/logout.php"
+                onSubmit={handleLogout}
             >
-                <b>{userInfo}님</b><br />로그아웃
-            </button>
+                <button className={`exit ${btnLogout ? '': 'hide'}`}>
+                    <b>{userInfo}</b><br/>로그아웃
+                </button>
+            </form>
 
             <div 
                 className="notServer"

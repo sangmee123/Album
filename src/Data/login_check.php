@@ -1,6 +1,4 @@
 <?php
-/* 세션 실행 */
-session_start();
 header("Access-Control-Allow-Origin: http://localhost:3000");
 
 $host = 'localhost';
@@ -18,8 +16,12 @@ if ($mysqli->connect_error) {
 $id = $_POST['id'];
 $password = $_POST['password'];
 
-$loginQuery = "SELECT id, password, username FROM users WHERE id = '$id'";
-$result = $mysqli->query($loginQuery);
+$loginQuery = "SELECT id, password, username FROM users WHERE id = ?";
+$stmt = $mysqli->prepare($loginQuery); // SQL 인젝션 방지를 위해 prepare 사용
+$stmt->bind_param("s", $id);
+$stmt->execute();
+
+$result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
     // 아이디가 존재하지 않을 때
@@ -29,13 +31,9 @@ if ($result->num_rows === 0) {
     // 비밀번호 확인하기
     $row = $result->fetch_assoc();
     $storedPassword = $row['password']; // DB에 저장된 비밀번호
-    $username = $row['username'];
 
-    if ($password === $storedPassword) {
-        // 비밀번호가 일치할 때  
-        $_SESSION["s_id"] = $row["id"];
-        $_SESSION["s_username"] = $row["username"];
-    
+    if (password_verify($password, $storedPassword)) {
+        // 비밀번호가 일치할 때
         $response = array('success' => true, 'message' => '로그인 성공');
         echo json_encode($response);
     } else {
@@ -45,5 +43,6 @@ if ($result->num_rows === 0) {
     }
 }
 
-mysqli_close($mysqli);
+$stmt->close();
+$mysqli->close();
 ?>

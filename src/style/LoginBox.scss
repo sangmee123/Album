@@ -35,13 +35,19 @@ body {
             padding: 14px 13px 9px;
             background: transparent;
             border: none;
-            border-bottom: 1.5px solid rgb(138, 137, 133);
+            border-bottom: 1.5px solid rgb(118, 117, 114);
             font-size: 18px;
             margin-bottom: 15px;
             &:focus + label,
             &:valid + label {
                 top: 50;
                 font-size: 13px;
+            }
+            &:-webkit-autofill,
+            &:-webkit-autofill:hover,
+            &:-webkit-autofill:focus,
+            &:-webkit-autofill:active {
+                transition: background-color 5000s;
             }
         }
         label {

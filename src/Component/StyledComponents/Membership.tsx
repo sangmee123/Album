@@ -19,11 +19,11 @@ const Form = styled.form`
     margin-top: 20px;
 `
 
-const Label = styled.label<{ phone?: string }>`
+const Label = styled.label<{ id?: string }>`
     font-size: 14px;
     margin-left: 60px;
     ${props => 
-      props.phone === "phoneLabel" &&
+      props.id === "phoneLabel" &&
       css`
         margin-left: 35px;
     `}
@@ -33,6 +33,7 @@ const Input = styled.input`
     display: block;
     width: 70%;
     height: 35px;
+    background: #F5F5F5;
     border: 1px solid rgba(114, 143, 157, 0.93);
     border-radius: 5px;
     padding-left: 15px;
@@ -45,6 +46,11 @@ const Input = styled.input`
        width: 70%;
        margin-left: 56px;
     `}
+    &:focus {
+        outline: none;
+        border: 1px solid orange;
+        box-shadow: 0 0 4px orange;
+    }
 `;
 
 const Conlumn = styled.div`
@@ -78,7 +84,7 @@ const Register = styled.button<{ checked: boolean }>`
     ${props => 
       props.checked === true &&
       css`
-        background-color: #d8db31;
+        background-color: #d8db31; 
     `}
 `;
 
@@ -125,8 +131,7 @@ interface ActiveState {
 };
 
 const Membership = () => {
-    const navigate = useNavigate();
-
+    const navigate = useNavigate(); 
     const [ form, setForm ] = useState<FormState>({
         id: '',
         password: '',
@@ -138,11 +143,24 @@ const Membership = () => {
 
     // 비밀번호 불일치 문구 & 회원가입 버튼 색상 => 활성화 상태 변수
     const [ isActive, setIsActive ] = useState<ActiveState>({
-        confirmPassword: true,
-        register: false
+        confirmPassword: true, // 기본 설정값 (비밀번호 일치) 
+        register: false // 기본 버튼 비활성화 색상 설정 
     });
     const { confirmPassword, register } = isActive;
     
+    const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+    
+        if (name === "phone") {
+            // 휴대폰 번호 입력 시 자동으로 하이픈 추가
+            const phoneNum = value.replace(/[^0-9]/g, '').replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
+                                  .replace(/(\-{1,2})$/g, '');
+            setForm(prev => ({ ...prev, [name]: phoneNum }));
+        } else {
+            setForm(prev => ({ ...prev, [name]: value }));
+        }
+    }, []);   
+
     useEffect(() => {
         setIsActive(prev => ({
             ...prev,
@@ -156,20 +174,7 @@ const Membership = () => {
                 && confirmPassword === true // 비밀번호 불일치 문구까지 안 보여야 회원가입 버튼 색상 활성화
                 && phone !== ''
         }));
-    }, [id, password_confirm, password, username, confirmPassword, phone]);
-
-    const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-    
-        if (name === "phone") {
-            // 휴대폰 번호 입력 시 자동으로 하이픈 추가
-            const phoneNum = value.replace(/[^0-9]/g, '').replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
-                                  .replace(/(\-{1,2})$/g, '');
-            setForm(prev => ({ ...prev, [name]: phoneNum }));
-        } else {
-            setForm(prev => ({ ...prev, [name]: value }));
-        }
-    }, []);    
+    }, [id, password_confirm, password, username, confirmPassword, phone]); 
 
 
     // // 상태 및 변수를 로깅
@@ -225,7 +230,7 @@ const Membership = () => {
                         </ColumnName>
 
                         <ColumnPhone>
-                            <Label phone="phoneLabel">휴대폰 번호</Label>
+                            <Label id="phoneLabel">휴대폰 번호</Label>
                             <Input
                                 type="text" 
                                 name="phone" 
@@ -237,12 +242,8 @@ const Membership = () => {
                         </ColumnPhone>
                     </Conlumn>
 
-                    <Register 
-                        checked={register}
-                    >
-                        회원가입
-                    </Register>
-                    <Back type="button" onClick={() => navigate(-1)}>back</Back>
+                    <Register checked={register}>회원가입</Register>
+                    <Back type="button" onClick={() => navigate('/')}>back</Back>
                     <Check checked={confirmPassword}>비밀번호가 일치하지 않습니다.</Check> 
                 </Form>
             </MembershipBox>
