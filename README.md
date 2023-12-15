@@ -6,24 +6,33 @@
 - 📝 [개요](#-포트폴리오-개요)
 
 - 🛠 [사용 기술 스택](#-사용-기술-스택)
+- 👤 [사용자 계정](#-사용자-계정)
+  - 🎬 [회원가입](#-회원가입)
+  - [아이디 찾기](#아이디-찾기)
+  - [비밀번호 찾기](#비밀번호-찾기)
 - [서버 On일 때](#서버-on일-때)
-- [서버 Off일 때](#서버-off일-때)
-- 🎬 [전체 시연 영상](#-전체-시연-영상)
+  - 🌞 [Light 모드](#-light-모드)
+  - 🌜 [Dark 모드](#-dark-모드)
+- 🎬 [서버 Off일 때](#-서버-off일-때)
+- 🎬 [로그인 과정 시연 영상](#-로그인-과정-시연-영상)
   
 <br>
 
 ## 📝 포트폴리오 개요 
 
-<img width="800" src="https://github.com/sangmee123/Album/assets/69633033/4a8478b2-fbd9-4611-8df7-a84ef831a97e">
-
-<img width="800" src="https://github.com/sangmee123/Album/assets/69633033/0a1543a2-37a6-427f-a740-d45ae17d030b">
+<img width="800" src="https://github.com/sangmee123/Album/assets/69633033/15fcf57d-ffcd-4a31-8385-cc8c2ff70f78">
 
 >**프로젝트**: 추억을 로그인. 앨범집
 >
 >**개발 기간**: 2023. 10. 
 >
-> 로그인에 성공하면 앨범집 형태의 UI로 렌더링합니다. <br>
-> 로컬 서버를 구현하여 이미지 관련 데이터를 불러왔습니다.  
+>**상세 기능**:
+> - XAMPP를 사용하여 **PHP 로컬 서버**를 구현하였습니다.
+> - **회원가입**을 통해 계정을 생성할 수 있습니다.
+> - **아이디 찾기**와 **비밀번호 찾기**를 통해 본인의 계정을 찾을 수 있습니다.
+> - **비밀번호 재설정**을 할 수 있습니다.
+> - 로그인에 성공하면 **앨범집 형태의 UI**로 렌더링합니다. <br>
+> - 로컬 서버에서 이미지 관련 데이터를 불러왔습니다.  
 
 <br>
 
@@ -37,28 +46,48 @@
 <br>
 ![PHP](https://img.shields.io/badge/PHP-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)
 ![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)
+
+<br>
+
+## 👤 사용자 계정
+### 🎬 회원가입
+
+https://github.com/sangmee123/Album/assets/69633033/eef3cc5f-d617-4d9e-bd31-54d137cf3fb1
+
+
+---
+
+### 아이디 찾기
+
+<img width="800" src="https://github.com/sangmee123/Album/assets/69633033/f1167f7d-d255-4c5d-96db-0e6e1d672fcb"><br>
+<br>사용자 **이름**과 **휴대폰 번호**를 입력하여 아이디를 찾을 수 있습니다.
+
+---
+
+### 비밀번호 찾기
+<img width="800" src="https://github.com/sangmee123/Album/assets/69633033/8ee62a7f-bf20-473c-bdb6-1849ae15e7cf"><br>
+<br>사용자 **아이디**와 **휴대폰 번호**를 입력하여 비밀번호를 재설정할 수 있습니다.
+
 <br>
 
 ## 서버 On일 때
 ### 🌞 Light 모드
 <p align="center">
-  <img width="800" src="https://github.com/sangmee123/Album/assets/69633033/f914521b-5753-4847-8c91-8b7f1e675281">
+  <img width="800" src="https://github.com/sangmee123/Album/assets/69633033/5400a9a5-55f8-40d9-b21f-0d4e5b77073d">
 </p>
 
 ### 🌜 Dark 모드
 <p align="center">
-  <img width="800" src="https://github.com/sangmee123/Album/assets/69633033/d9f2e1f7-c232-4e6b-bf9b-3daeed222bf8">
+  <img width="800" src="https://github.com/sangmee123/Album/assets/69633033/87971c41-ee8f-49cc-a20b-85f7b8cde12f">
 </p>
 
-## 서버 Off일 때
+## 🎬 서버 Off일 때
 
-Id 입력란은 블러 처리하였습니다.
-
-https://github.com/sangmee123/Album/assets/69633033/776d523a-6ced-4792-b24f-26afb91b6137
+https://github.com/sangmee123/Album/assets/69633033/6c9a909d-b296-4f7a-9533-0b61dcd13345
 
 <br>
 
-## 🎬 전체 시연 영상
+## 🎬 로그인 과정 시연 영상
 
 https://github.com/sangmee123/Album/assets/69633033/06f1a05d-fac0-4de6-8042-9e47530c6e1a
 
