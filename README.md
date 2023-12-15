@@ -52,18 +52,21 @@
 ## 👤 사용자 계정
 ### 🎬 회원가입
 
+https://github.com/sangmee123/Album/assets/69633033/eef3cc5f-d617-4d9e-bd31-54d137cf3fb1
+
+
 ---
 
 ### 아이디 찾기
 
 <img width="800" src="https://github.com/sangmee123/Album/assets/69633033/f1167f7d-d255-4c5d-96db-0e6e1d672fcb"><br>
-사용자 **이름**과 **휴대폰 번호**를 입력하여 아이디를 찾을 수 있습니다.
+<br>사용자 **이름**과 **휴대폰 번호**를 입력하여 아이디를 찾을 수 있습니다.
 
 ---
 
 ### 비밀번호 찾기
 <img width="800" src="https://github.com/sangmee123/Album/assets/69633033/8ee62a7f-bf20-473c-bdb6-1849ae15e7cf"><br>
-사용자 **아이디**와 **휴대폰 번호**를 입력하여 비밀번호를 재설정할 수 있습니다.
+<br>사용자 **아이디**와 **휴대폰 번호**를 입력하여 비밀번호를 재설정할 수 있습니다.
 
 <br>
 
