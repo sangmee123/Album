@@ -2,7 +2,7 @@
     header("Access-Control-Allow-Origin: http://localhost:3000");
     $host = 'localhost';
     $user = 'root'; 
-    $pw = 'system';  
+    $pw = 'system';
     $dbName = 'album'; 
 
     $mysqli = new mysqli($host, $user, $pw, $dbName);

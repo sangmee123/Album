@@ -17,7 +17,7 @@ const H1 = styled.h1`
 
 const Form = styled.form`
     margin-top: 20px;
-`
+`;
 
 const Label = styled.label<{ id?: string }>`
     font-size: 14px;
@@ -127,7 +127,7 @@ interface FormState {
 };
 interface ActiveState {
     confirmPassword: boolean,
-    register: boolean
+    registerBtn: boolean
 };
 
 const Membership = () => {
@@ -144,9 +144,9 @@ const Membership = () => {
     // 비밀번호 불일치 문구 & 회원가입 버튼 색상 => 활성화 상태 변수
     const [ isActive, setIsActive ] = useState<ActiveState>({
         confirmPassword: true, // 기본 설정값 (비밀번호 일치) 
-        register: false // 기본 버튼 비활성화 색상 설정 
+        registerBtn: false // 버튼 비활성화 설정값
     });
-    const { confirmPassword, register } = isActive;
+    const { confirmPassword, registerBtn } = isActive;
     
     const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -168,7 +168,7 @@ const Membership = () => {
             confirmPassword: password_confirm === password, 
 
             // id, password, password_confirm, username, phone 값이 모두 있으면 회원가입 버튼 색상 활성화
-            register: 
+            registerBtn: 
                 id !== '' && password !== '' 
                 && password_confirm !== '' && username !== '' 
                 && confirmPassword === true // 비밀번호 불일치 문구까지 안 보여야 회원가입 버튼 색상 활성화
@@ -191,8 +191,8 @@ const Membership = () => {
                 <H1>회원가입</H1>
                 <Form 
                     method="POST"
-                    action="http://localhost/Album/src/Data/register.php"
-                    onSubmit={(e) => register === false && e.preventDefault()}
+                    action="http://localhost/album/src/Data/register.php"
+                    onSubmit={(e) => registerBtn === false && e.preventDefault()}
                 >
                     <Label>아이디</Label>
                     <Input 
@@ -242,7 +242,7 @@ const Membership = () => {
                         </ColumnPhone>
                     </Conlumn>
 
-                    <Register checked={register}>회원가입</Register>
+                    <Register checked={registerBtn}>회원가입</Register>
                     <Back type="button" onClick={() => navigate('/')}>back</Back>
                     <Check checked={confirmPassword}>비밀번호가 일치하지 않습니다.</Check> 
                 </Form>

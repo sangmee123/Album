@@ -1,8 +1,8 @@
 <?php
 $host = 'localhost';
-$user = 'root';
+$user = 'root'; 
 $pw = 'system';
-$dbName = 'album';
+$dbName = 'album'; 
 
 $mysqli = new mysqli($host, $user, $pw, $dbName);
 $mysqli->set_charset("utf8mb4"); // 4바이트의 인코딩

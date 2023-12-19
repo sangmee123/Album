@@ -91,7 +91,7 @@ const HintId = () => {
         const formData = new FormData(formElement);
         
         if(isActive) {
-            axios.post("http://localhost/Album/src/Data/member_find_id.php", formData)
+            axios.post("http://localhost/album/src/Data/member_find_id.php", formData)
             .then(res => {
                 if(res.data.success) { 
                     const id = res.data.id;

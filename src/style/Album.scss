@@ -27,7 +27,7 @@ body { margin: 0; }
     background-color: rgb(24, 22, 17);
     
     .albumBox {
-        @include album-box;
+        @include album-box; 
         .leftBox {
             display: inline-block;
             background-color: $mushroom;
@@ -35,6 +35,7 @@ body { margin: 0; }
             height: 500px; 
             text-align: center;
             box-shadow: -5px 15px 28px 0px $mushroomShadow;
+            
             img {
                 border-radius: 5px;
                 margin: 5px;
@@ -103,6 +104,10 @@ body { margin: 0; }
 } 
 
 /* 다크모드와 라이트모드의 교집합 */
+
+.blur { // 얼굴 블러 처리
+    filter: blur(20px);
+}
 .icon {
     float: left;
     margin-top: 10px;

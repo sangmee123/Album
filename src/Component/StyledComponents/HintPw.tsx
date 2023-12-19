@@ -93,7 +93,7 @@ const HintPw = () => {
         const formData = new FormData(formElement);
 
         if(isActive) {
-            axios.post("http://localhost/Album/src/Data/member_find_pw.php", formData)
+            axios.post("http://localhost/album/src/Data/member_find_pw.php", formData)
             .then(res => {
                 if(res.data.success) {
                     const userId = res.data.id;

@@ -21,14 +21,14 @@ const Album = ()  => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const userId = location.state.id;
+    const userId:string = location.state.id;
 
     useEffect(() => {
         // 로그인 정보 가져오기
         const postData = new FormData();
         postData.append('id', userId);
 
-        axios.post('http://localhost/Album/src/Data/login.php', postData)
+        axios.post('http://localhost/album/src/Data/login.php', postData)
         .then(res => {
             const data = res.data;
             if(data.success) {
@@ -39,8 +39,19 @@ const Album = ()  => {
             setBtnLogout(false);
         });
 
+        // // 이미지 관련 파일 DB에 저장하기
+        // axios.get('../Data/INSERT_db.php')
+        // .then(response => {
+        //     // 성공적인 응답을 처리하는 로직
+        //     console.log(response.data);
+        // })
+        // .catch(error => {
+        //     // 오류 발생 시 처리하는 로직
+        //     console.error('Error:', error);
+        // });
+        
         // 이미지 관련 데이터 불러오기
-        axios.get('http://localhost/Album/src/Data/GET_db.php')
+        axios.get('http://localhost/album/src/Data/GET_db.php')
         .then(res => {
             const data = res.data;
             const updatedImageData: ImageData[] = [];
@@ -91,8 +102,8 @@ const Album = ()  => {
                 alt="Icon"
             />
             <form 
-                method="POST" 
-                action="http://localhost/Album/src/Data/logout.php"
+                // method="POST" 
+                // action="http://localhost/album/src/Data/logout.php"
                 onSubmit={handleLogout}
             >
                 <button className={`exit ${btnLogout ? '': 'hide'}`}>
@@ -117,7 +128,10 @@ const Album = ()  => {
                         <div className="leftBox">   
                             <h3>{content.title} 앨범집</h3>
                             {content.urlLeft.map((url, urlIndex) => (
-                                <img key={urlIndex} src={url} width={165} alt="이미지" />
+                                <img 
+                                    className={`${(userId !== 'oeanb') && (content.title === '졸업식' || content.title === '셀카') ? 'blur' : ''}`} 
+                                    key={urlIndex} src={url} width={165} alt="이미지" 
+                                />
                             ))}
                             {content.txt.map((txt, txtIndex) => (
                                 <span className="contents" key={txtIndex}>{txt}</span>
@@ -127,7 +141,10 @@ const Album = ()  => {
                         <div className="rightBox">
                             <h3>추억을 열어 보세요.</h3>
                             {content.urlRight.map((url, urlIndex) => (
-                                <img key={urlIndex} src={url} width={165} alt="이미지" />
+                                <img 
+                                    className={`${(userId !== 'oeanb') && (content.title === '졸업식' || content.title === '셀카') ? 'blur' : ''}`} 
+                                    key={urlIndex} src={url} width={165} alt="이미지" 
+                                />
                             ))}
                             <button type="button" className="entrance">펼쳐보기</button>
                         </div>

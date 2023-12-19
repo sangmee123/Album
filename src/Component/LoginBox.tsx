@@ -39,7 +39,7 @@ const LoginBox = () => {
         const formData = new FormData(formElement); 
     
         if (isActive) {
-            axios.post('http://localhost/Album/src/Data/login_check.php', formData)
+            axios.post('http://localhost/album/src/Data/login_check.php', formData)
             .then(res => {
                 if (res.data.success) { 
                     // 로그인 성공 시
@@ -51,7 +51,7 @@ const LoginBox = () => {
                 }
             })
             .catch(error => {
-                navigate('/album', { state: { id } });
+                alert('서버가 연결되어 있지 않습니다.');
             });
         }
     }, [isActive, form, navigate]);
