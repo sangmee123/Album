@@ -12,7 +12,12 @@
         die("데이터베이스 연결 실패: " . $mysqli->connect_error);
     }
 
-    $selectQuery = "select * from image_data;";    
+    $id = $_POST['id'];
+    if($id === 'oeanb') {
+        $selectQuery = "select * from image_data;";  
+    } else {
+        $selectQuery = "select * from image_data2;";  
+    }
     $result = $mysqli->query($selectQuery);
 
     if ($result) {

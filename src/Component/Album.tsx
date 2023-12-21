@@ -51,7 +51,7 @@ const Album = ()  => {
         // });
         
         // 이미지 관련 데이터 불러오기
-        axios.get('http://localhost/album/src/Data/GET_db.php')
+        axios.post('http://localhost/album/src/Data/GET_db.php', postData)
         .then(res => {
             const data = res.data;
             const updatedImageData: ImageData[] = [];
@@ -81,7 +81,7 @@ const Album = ()  => {
         e.preventDefault();
         navigate('/');
     }, [navigate]);
-
+ 
     if (loading) {
         // 데이터 로딩 중일 때 표시할 내용
         return (
@@ -128,10 +128,7 @@ const Album = ()  => {
                         <div className="leftBox">   
                             <h3>{content.title} 앨범집</h3>
                             {content.urlLeft.map((url, urlIndex) => (
-                                <img 
-                                    className={`${(userId !== 'oeanb') && (content.title === '졸업식' || content.title === '셀카') ? 'blur' : ''}`} 
-                                    key={urlIndex} src={url} width={165} alt="이미지" 
-                                />
+                                <img key={urlIndex} src={url} width={165} alt="이미지" />
                             ))}
                             {content.txt.map((txt, txtIndex) => (
                                 <span className="contents" key={txtIndex}>{txt}</span>
@@ -141,10 +138,7 @@ const Album = ()  => {
                         <div className="rightBox">
                             <h3>추억을 열어 보세요.</h3>
                             {content.urlRight.map((url, urlIndex) => (
-                                <img 
-                                    className={`${(userId !== 'oeanb') && (content.title === '졸업식' || content.title === '셀카') ? 'blur' : ''}`} 
-                                    key={urlIndex} src={url} width={165} alt="이미지" 
-                                />
+                                <img key={urlIndex} src={url} width={165} alt="이미지" />
                             ))}
                             <button type="button" className="entrance">펼쳐보기</button>
                         </div>

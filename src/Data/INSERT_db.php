@@ -28,11 +28,11 @@ foreach($imageData as $item) {
     $txt = json_encode($item['txt'], JSON_UNESCAPED_UNICODE);
 
     // 이미 데이터가 있는지 확인
-    $checkDuplicateQuery = "SELECT * FROM image_data WHERE title = '$title'";
+    $checkDuplicateQuery = "SELECT * FROM image_data2 WHERE title = '$title'";
     $duplicateResult = $mysqli->query($checkDuplicateQuery);
 
     if ($duplicateResult->num_rows == 0) {
-        $insertQuery = "INSERT INTO image_data (title, urlLeft, urlRight, txt) 
+        $insertQuery = "INSERT INTO image_data2 (title, urlLeft, urlRight, txt) 
         VALUES ('$title', '$urlLeft', '$urlRight', '$txt')";
 
         if ($mysqli->query($insertQuery) === TRUE) {

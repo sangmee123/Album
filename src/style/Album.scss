@@ -104,10 +104,6 @@ body { margin: 0; }
 } 
 
 /* 다크모드와 라이트모드의 교집합 */
-
-.blur { // 얼굴 블러 처리
-    filter: blur(20px);
-}
 .icon {
     float: left;
     margin-top: 10px;
