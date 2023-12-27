@@ -19,32 +19,32 @@
     { 
         "title": "졸업식",
         "urlLeft": [
-            "images/graduation2/graduation1.png",
-            "images/graduation2/graduation4.png"
+            "images/graduation/graduation1.jpg",
+            "images/graduation/graduation4.jpg"
         ],
         "urlRight": [
-            "images/graduation2/graduation2.png",
-            "images/graduation2/graduation3.png"
+            "images/graduation/graduation2.jpg",
+            "images/graduation/graduation3.jpg"
         ],
         "txt": [
             "2023년 8월 31일🎉",
-            "졸업식 날 찍은 사진입니다. (타계정 블러 처리)"
+            "졸업식 날 찍은 사진입니다."
         ]
     },
     {
         "title": "셀카",
         "urlLeft": [
-            "images/myFace2/face1.png",
-            "images/myFace2/face2.png"
+            "images/myFace2/face1.jpg",
+            "images/myFace2/face2.jpg"
         ],
         "urlRight": [
-            "images/myFace2/face3.png",
-            "images/myFace2/face4.png",
-            "images/myFace2/face6.png"
+            "images/myFace2/face3.jpg",
+            "images/myFace2/face4.jpg",
+            "images/myFace2/face6.jpg"
         ],
         "txt": [
             "내 얼굴🤗",
-            "^ㅇ^ (타계정 블러 처리)"
+            "^ㅇ^"
         ]
     },
     {  
