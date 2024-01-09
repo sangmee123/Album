@@ -24,6 +24,7 @@ if ($imageData === null) {
     die("data.json 파일을 읽어올 수 없거나 JSON 파싱 오류가 발생했습니다.<br>");
 }
 
+$id = $_POST['id'];
 foreach($imageData as $item) {
     $title = $item['title'];
     $urlLeft = json_encode($item['urlLeft']);

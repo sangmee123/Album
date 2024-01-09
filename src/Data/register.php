@@ -69,7 +69,7 @@ if($stmtId->num_rows == 0 && $stmtPhone->num_rows == 0) {
         echo("
             <script>
                 alert('이미 사용 중인 아이디입니다.');
-                location.replace('http://localhost:3000/membership');
+                location.replace('http://localhost:3000');
             </script>
         ");
     } else if($stmtPhone->num_rows != 0) { 
@@ -77,7 +77,7 @@ if($stmtId->num_rows == 0 && $stmtPhone->num_rows == 0) {
         echo("
             <script>
                 alert('이미 가입된 계정이 있습니다.');
-                location.replace('http://localhost:3000/membership');
+                location.replace('http://localhost:3000');
             </script>
         ");       
     }

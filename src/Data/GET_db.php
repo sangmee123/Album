@@ -21,6 +21,7 @@ if($id === 'oeanb') {
 } else {
     $selectQuery = "select * from image_data2;";  
 }
+// $selectQuery = "SELECT * FROM user_image_data WHERE user_id = $id";
 $result = $mysqli->query($selectQuery);
 
 if ($result) {

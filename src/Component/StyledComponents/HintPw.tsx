@@ -97,7 +97,7 @@ const HintPw = () => {
             .then(res => {
                 if(res.data.success) {
                     const userId = res.data.id;
-                    navigate('/answerPw', { state: { userId } });
+                    navigate('/pw/answerPw', { state: { userId } });
                 } else {
                     alert(res.data.message);
                 }

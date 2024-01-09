@@ -95,7 +95,7 @@ const HintId = () => {
             .then(res => {
                 if(res.data.success) { 
                     const id = res.data.id;
-                    navigate('/answerId', { state: { id }});
+                    navigate('/id/answerId', { state: { id }});
                 } else {
                     alert(res.data.message);
                 }
