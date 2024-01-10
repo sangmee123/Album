@@ -94,7 +94,8 @@ https://github.com/sangmee123/Album/assets/69633033/eef3cc5f-d617-4d9e-bd31-54d1
 
 ## 🎬 서버 Off일 때
 
-https://github.com/sangmee123/Album/assets/69633033/6c9a909d-b296-4f7a-9533-0b61dcd13345
+https://github.com/sangmee123/Album/assets/69633033/cdb64f74-b931-49d2-86a8-3d3dcadcf9a5
+
 
 <br>
 
