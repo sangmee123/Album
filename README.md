@@ -101,8 +101,7 @@ https://github.com/sangmee123/Album/assets/69633033/cdb64f74-b931-49d2-86a8-3d3d
 
 ## 🎬 로그인 과정 시연 영상
 
-https://github.com/sangmee123/Album/assets/69633033/9ec54252-2461-4eb0-8a52-e3ab50958295
-
+https://github.com/sangmee123/Album/assets/69633033/2fb744d0-e6dd-4040-a41e-3e6a41ffa71f
 
 
 
