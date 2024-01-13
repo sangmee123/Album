@@ -94,14 +94,14 @@ https://github.com/sangmee123/Album/assets/69633033/eef3cc5f-d617-4d9e-bd31-54d1
 
 ## 🎬 서버 Off일 때
 
-https://github.com/sangmee123/Album/assets/69633033/6c9a909d-b296-4f7a-9533-0b61dcd13345
+https://github.com/sangmee123/Album/assets/69633033/cdb64f74-b931-49d2-86a8-3d3dcadcf9a5
+
 
 <br>
 
 ## 🎬 로그인 과정 시연 영상
 
-https://github.com/sangmee123/Album/assets/69633033/9ec54252-2461-4eb0-8a52-e3ab50958295
-
+https://github.com/sangmee123/Album/assets/69633033/2fb744d0-e6dd-4040-a41e-3e6a41ffa71f
 
 
 
