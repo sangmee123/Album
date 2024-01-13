@@ -3,18 +3,18 @@ import LoginBox from './Component/LoginBox';
 import HintId from './Component/StyledComponents/HintId';
 import HintPw from './Component/StyledComponents/HintPw';
 import Membership from './Component/StyledComponents/Membership';
-import Album from './Component/Album';
+import AlbumPage from './Component/AlbumPage';
 import AnswerId from './Component/StyledComponents/AnswerId';
 import AnswerPw from './Component/StyledComponents/AnswerPw';
-import Gallary from './Component/Gallary';
+import GallaryPage from './Component/Gallary/GallaryPage';
 
 const App = () => {
   return (
     <>
       <Routes>
         <Route path="*" element={<LoginBox />}></Route>
-        <Route path="/album" element={<Album />}></Route>
-        <Route path="/album/:title" element={<Gallary />}></Route>
+        <Route path="/album" element={<AlbumPage />}></Route>
+        <Route path="/album/:title" element={<GallaryPage />}></Route>
         <Route path="/id" element={<HintId />}></Route>
         <Route path="/pw" element={<HintPw />}></Route>
         <Route path="/id/answerId" element={<AnswerId />}></Route>

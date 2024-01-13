@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Carousel from "react-material-ui-carousel";
 import axios from 'axios';
-import Images from './Images';
 
 interface ImageData {
     idx: string;
@@ -12,11 +11,11 @@ interface ImageData {
     txt: string[];
 }
 
-interface CarouselImgProps {
+interface CarouselImgProp {
     userId: string;
 }
 
-const CarouselImg: React.FC<CarouselImgProps> = ({ userId }) => {
+const CarouselImg: React.FC<CarouselImgProp> = ({ userId }) => {
     const [imageData, setImageData] = useState<ImageData[]>([]);
     const navigate = useNavigate();
 
@@ -43,11 +42,11 @@ const CarouselImg: React.FC<CarouselImgProps> = ({ userId }) => {
             for(let i in data) {
                 if(data[i].title !== '') {
                     updatedImageData.push({
-                        "idx": data[i].idx,
-                        "title": data[i].title,
-                        "urlLeft": JSON.parse(data[i].urlLeft),
-                        "urlRight": JSON.parse(data[i].urlRight),
-                        "txt": JSON.parse(data[i].txt)
+                        idx: data[i].idx,
+                        title: data[i].title,
+                        urlLeft: JSON.parse(data[i].urlLeft),
+                        urlRight: JSON.parse(data[i].urlRight),
+                        txt: JSON.parse(data[i].txt)
                     })
                 }
             }
@@ -63,8 +62,9 @@ const CarouselImg: React.FC<CarouselImgProps> = ({ userId }) => {
     const handleButton = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         const albumTitle = e.currentTarget.name;
-        navigate(`/album/${albumTitle}`, { state: { albumTitle } });
-      }, [navigate]);
+        const id = userId;
+        navigate(`/album/${albumTitle}`, { state: { albumTitle, id } });
+      }, [navigate, userId]);
 
     return (
         <>

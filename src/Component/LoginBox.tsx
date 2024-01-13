@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+// import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import HintId from './StyledComponents/HintId';
 import HintPw from './StyledComponents/HintPw';
 import Membership from './StyledComponents/Membership';
-import Album from './Album';
+import Album from './AlbumPage';
 import '../style/LoginBox.scss';
 
 interface FormState {
@@ -12,9 +13,9 @@ interface FormState {
     password: string;
 }
 
-const LoginBox = () => {
-    const [ isActive, setIsActive ] = useState(false);
-    const [ form, setForm ] = useState<FormState>({
+const LoginBox = () => {    
+    const [isActive, setIsActive] = useState(false);
+    const [form, setForm] = useState<FormState>({
         id: '',
         password: ''
     });
@@ -54,7 +55,7 @@ const LoginBox = () => {
                 alert('서버가 연결되어 있지 않습니다.');
             });
         }
-    }, [isActive, form, navigate]);
+    }, [id, isActive, navigate]);
 
     // // 상태 및 변수를 로깅
     // console.log('id:', id);
