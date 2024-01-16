@@ -20,6 +20,7 @@ const GallaryPage = () => {
     const [titleProp, setTitleProp] = useState(''); // 현재 선택한 title (자식 컴포넌트에게 prop으로 전달)
 
     useEffect(() => {        
+        alert('개발 중인 페이지입니다.');
         // 로그인 정보 가져오기
         const postData = new FormData();
         postData.append('id', userId);

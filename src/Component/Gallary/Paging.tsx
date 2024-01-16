@@ -1,23 +1,26 @@
+import React, { useState } from "react";
 import Pagination from "react-js-pagination";
 import '../../style/Paging.scss';
 
 interface PagingProps {
+  page: number;
   postPerPage: number;
   totalPosts: number;
-  currentPage: (page: number) => void;
+  currentPage: (pageNumber: number) => void;
 }
 
-const Paging: React.FC<PagingProps> = ({ postPerPage, totalPosts, currentPage }) => {
+const Paging: React.FC<PagingProps> = ({ page, postPerPage, totalPosts, currentPage }) => {
 
   return (
     <Pagination
-        activePage={postPerPage}
-        itemsCountPerPage={5}
-        totalItemsCount={totalPosts}
-        pageRangeDisplayed={5}
-        prevPageText={"‹"}
-        nextPageText={"›"}
-        onChange={currentPage}
+      activePage={page}
+      itemsCountPerPage={postPerPage}
+      totalItemsCount={totalPosts}
+      prevPageText={"‹"}
+      nextPageText={"›"}
+      onChange={currentPage}
+      itemClass="custom-pagination-item"
+      linkClass="custom-pagination-link"
     />
   );
 };
