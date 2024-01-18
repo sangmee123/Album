@@ -19,6 +19,14 @@ $grayColor: #e5e5e5;
         }
         &:first-child, &:nth-child(2), &:nth-last-child(2), &:last-child {
            font-weight: bold;
+
+           &:active {  
+                background-color: #65a511;
+                color: white;
+            } 
+        }
+        &:nth-child(2), &:nth-last-child(2) {
+            padding: 8px 5px;
         }
     }
 }
@@ -26,11 +34,11 @@ $grayColor: #e5e5e5;
     display: inline-block;
     font-size: 14px;
     text-align: center;
-    border-radius: 100px;
-    padding: 10px 5px;
+    border-radius: 20px;
+    padding: 8px 3.5px;
     cursor: pointer;
     &:hover {
-      background-color: $grayColor;
+        background-color: $grayColor;
     }
 
     // 현재 페이지 색상 활성화
@@ -39,4 +47,9 @@ $grayColor: #e5e5e5;
         color: white;
         font-weight: bold;
     }
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }

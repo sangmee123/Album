@@ -1,8 +1,31 @@
-.title {
-    font-size: 18px;
-    font-weight: bold;
+.top_area {
     margin-top: 80px;
-    margin-left: 220px;
+    margin-bottom: 20px;
+    .title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-left: 220px;
+    }
+    span {
+        font-size: 13px;
+        font-weight: lighter;
+        margin-left: 5px;
+    }
+
+    .upload {  
+        background-color: #e5e5e5;  
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        float: right;
+        padding: 6px 10px;
+        margin-top: 0px;
+        margin-right: 3%;
+        &:hover {
+            background-color: #4078ff;
+            color: #fff;
+        }
+    }
 }
 
 .scroll {

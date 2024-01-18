@@ -13,14 +13,13 @@ const GallaryPage = () => {
     const location = useLocation();
     const userId: string = location.state.id;
     const title: string = location.state.albumTitle;
-    
+
     const [userInfo, setUserInfo] = useState(''); // 사용자 이름 상태
     const [list, setList] = useState<List[]>([]); // 전체 title 담을 list
     const [selectedTitle, setSelectedTitle] = useState(title); // 현재 선택한 앨범 title
-    const [titleProp, setTitleProp] = useState(''); // 현재 선택한 title (자식 컴포넌트에게 prop으로 전달)
+    const [titleProp, setTitleProp] = useState(title); // 현재 선택한 title (자식 컴포넌트에게 prop으로 전달)
 
     useEffect(() => {        
-        alert('개발 중인 페이지입니다.');
         // 로그인 정보 가져오기
         const postData = new FormData();
         postData.append('id', userId);
@@ -36,7 +35,7 @@ const GallaryPage = () => {
             console.log(error);
         });
 
-        // 이미지 관련 데이터 불러오기
+        /* 앨범 title 리스트 불러오기 */
         axios.post('http://localhost/album/src/Data/GET_db.php', postData)
         .then(res => {
             const data = res.data;
@@ -66,7 +65,7 @@ const GallaryPage = () => {
     }, []);
 
     return (
-        <div className='container'>
+        <div className='container fadeIn'>
             <div className='navibar'>
                 <h1>추억을 로그인</h1>
                 <form onSubmit={handleLogout}>
