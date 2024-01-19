@@ -112,7 +112,9 @@ const Images: React.FC<TitleProps>= ({ titleProp }) => {
                                 <img 
                                     src={content.src} 
                                     onClick={() => 
-                                        navigate('/zoom', { state: { totalImage, currentPost, id }})
+                                        userId !== 'oeanb' && // 타계정일 때
+                                        (title !== '고양이' &&  title !== '내가 먹은 음식') ?
+                                        '' : navigate('/zoom', { state: { totalImage, currentPost, id }})
                                     }
                                 />
                         </div>
