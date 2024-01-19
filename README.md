@@ -11,8 +11,7 @@
   - 🔓 [아이디 찾기](#-아이디-찾기)
   - 🔓 [비밀번호 찾기](#-비밀번호-찾기)
 - [서버 On일 때](#서버-on일-때)
-  - 🌞 [Light 모드](#-light-모드)
-  - 🌜 [Dark 모드](#-dark-모드)
+  - 🌞 Light 모드 & 🌜 Dark 모드
 - 🎬 [서버 Off일 때](#-서버-off일-때)
 - 🎬 [로그인 과정 시연 영상](#-로그인-과정-시연-영상)
   
@@ -82,16 +81,23 @@ https://github.com/sangmee123/Album/assets/69633033/eef3cc5f-d617-4d9e-bd31-54d1
 <br>
 
 ## 서버 On일 때
-### 🌞 Light 모드
+<!-- ### 🌞 Light 모드
 <p align="center">
-  <img width="800" src="https://github.com/sangmee123/Album/assets/69633033/5400a9a5-55f8-40d9-b21f-0d4e5b77073d">
+  <img width="395" src="https://github.com/sangmee123/Album/assets/69633033/5400a9a5-55f8-40d9-b21f-0d4e5b77073d">
 </p>
 
 ### 🌜 Dark 모드
 <p align="center">
-  <img width="800" src="https://github.com/sangmee123/Album/assets/69633033/87971c41-ee8f-49cc-a20b-85f7b8cde12f">
+  <img width="395" src="https://github.com/sangmee123/Album/assets/69633033/87971c41-ee8f-49cc-a20b-85f7b8cde12f">
 </p>
+-->
 
+### 🌞 Light 모드  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🌜 Dark 모드
+
+<img width="400" src="https://github.com/sangmee123/Album/assets/69633033/5400a9a5-55f8-40d9-b21f-0d4e5b77073d">
+
+<img width="400" src="https://github.com/sangmee123/Album/assets/69633033/87971c41-ee8f-49cc-a20b-85f7b8cde12f">
+  
 ## 🎬 서버 Off일 때
 
 https://github.com/sangmee123/Album/assets/69633033/cdb64f74-b931-49d2-86a8-3d3dcadcf9a5

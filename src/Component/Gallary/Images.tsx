@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import gallaryData1 from '../../Data/gallaryData1';
-import gallaryData2 from '../../Data/gallaryData2';
-import gallaryData3 from '../../Data/gallaryData3';
-import gallaryData4 from '../../Data/gallaryData4';
-import blankData from '../../Data/blankData';
+import gallaryData1 from '../../ImageData/gallaryData1';
+import gallaryData2 from '../../ImageData/gallaryData2';
+import gallaryData3 from '../../ImageData/gallaryData3';
+import gallaryData4 from '../../ImageData/gallaryData4';
+import blankData from '../../ImageData/blankData';
 import '../../style/Images.scss';
 import Paging from './Paging';
 
@@ -15,13 +15,16 @@ interface List {
 interface TitleProps {
     titleProp: string;
 }
+
 interface Image {
     src: string;
 }
 interface GallaryDataArr {
     [title: string]: Image[];
 }
+
 const Images: React.FC<TitleProps>= ({ titleProp }) => {
+    const navigate = useNavigate(); 
     const location = useLocation(); 
     const userId: string = location.state.id;
 
@@ -44,7 +47,7 @@ const Images: React.FC<TitleProps>= ({ titleProp }) => {
                     titleInfo.push({ title: data[i].title });
                 }
             }
-
+            // 갤러리 이미지 - 타계정 접근 권한 제한
             const array: GallaryDataArr = {
                 [titleInfo[0].title]: gallaryData1,
                 [titleInfo[1].title]: userId === 'oeanb' ? gallaryData2 : blankData,
@@ -64,11 +67,13 @@ const Images: React.FC<TitleProps>= ({ titleProp }) => {
     const indexOfLastPost: number = page * postPerPage; 
     const indexOfFirtPost: number = indexOfLastPost - postPerPage; 
    
-    let currentPost: Image[] = [];
-    let totalImgCount: number = 0;
+    let currentPost: Image[] = []; // 현재 페이지에 보여줄 전체 이미지
+    let totalImage: Image[] = []; // 현재 title에 해당하는 전체 이미지
+    let totalImgCount: number = 0; // 현재 title에 해당하는 전체 이미지 개수
  
     if (Object.keys(gallaryDataArr).includes(titleProp)) {
         currentPost = gallaryDataArr[titleProp].slice(indexOfFirtPost, indexOfLastPost);
+        totalImage = gallaryDataArr[titleProp];
         totalImgCount = gallaryDataArr[titleProp].length;
     }
 
@@ -104,7 +109,12 @@ const Images: React.FC<TitleProps>= ({ titleProp }) => {
                 <div className='grid-container'>
                     {currentPost.map((content ,id) => (
                         <div key={id} className="location-image">
-                            <img src={content.src} />
+                                <img 
+                                    src={content.src} 
+                                    onClick={() => 
+                                        navigate('/zoom', { state: { totalImage, currentPost, id }})
+                                    }
+                                />
                         </div>
                     ))}
                 </div>
