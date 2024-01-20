@@ -1,6 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import Carousel from 'react-material-ui-carousel';
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import '../../style/ZoomImage.scss';
 
 interface Image {
@@ -11,8 +10,8 @@ const ZoomImage = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const imageData: Image[] = location.state.totalImage;
-    const index: number = location.state.id;
-    // console.log(index);
+    const pageNumber: number = location.state.page - 1;
+    const currentIndex: number = (pageNumber * 20) + location.state.id;
 
     return (
         <div className="full_image">
@@ -23,9 +22,10 @@ const ZoomImage = () => {
 
             <div className='carousel'> 
                 <Carousel autoPlay={false}>
-                    {imageData.map((content, id) => (
-                        <div key={id} className='location-image'>    
-                            <img src={imageData[(index + id) % imageData.length].src} />
+                    {imageData.map((content, i) => (
+                        <div key={i} className='location-image'>  
+                            {/* imageData의 배열 길이가 i로 인해 초과되지 않도록 % 연산자 사용 */}
+                            <img src={imageData[(currentIndex + i) % imageData.length].src} />
                         </div>
                     ))}
                 </Carousel>

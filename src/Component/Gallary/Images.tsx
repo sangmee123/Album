@@ -80,8 +80,10 @@ const Images: React.FC<TitleProps>= ({ titleProp }) => {
     const handlePageChange = useCallback((page: number) => {
         setPage(page);
     }, [page]);
-
+    
     const access = '타계정 접근 권한 없음';
+
+    // console.log(page);
     return (
         <>
             <div className='top_area'>
@@ -114,7 +116,7 @@ const Images: React.FC<TitleProps>= ({ titleProp }) => {
                                     onClick={() => 
                                         userId !== 'oeanb' && // 타계정일 때
                                         (title !== '고양이' &&  title !== '내가 먹은 음식') ?
-                                        '' : navigate('/zoom', { state: { totalImage, currentPost, id }})
+                                        '' : navigate('/zoom', { state: { totalImage, currentPost, page, id }})
                                     }
                                 />
                         </div>
