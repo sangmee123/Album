@@ -6,8 +6,8 @@ import Membership from './Component/StyledComponents/Membership';
 import AlbumPage from './Component/AlbumPage';
 import AnswerId from './Component/StyledComponents/AnswerId';
 import AnswerPw from './Component/StyledComponents/AnswerPw';
-import GallaryPage from './Component/Gallary/GallaryPage';
-import ZoomImage from './Component/Gallary/ZoomImage';
+import GalleryPage from './Component/Gallery/GalleryPage';
+import ZoomImage from './Component/Gallery/ZoomImage';
 
 const App = () => {
   return (
@@ -15,7 +15,7 @@ const App = () => {
       <Routes>
         <Route path="*" element={<LoginBox />}></Route>
         <Route path="/album" element={<AlbumPage />}></Route>
-        <Route path="/album/:title" element={<GallaryPage />}></Route>
+        <Route path="/album/:title" element={<GalleryPage />}></Route>
         <Route path="/zoom" element={<ZoomImage />}></Route>
         <Route path="/id" element={<HintId />}></Route>
         <Route path="/pw" element={<HintPw />}></Route>

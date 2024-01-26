@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
-// import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import HintId from './StyledComponents/HintId';
 import HintPw from './StyledComponents/HintPw';
@@ -43,11 +42,13 @@ const LoginBox = () => {
             axios.post('http://localhost/album/src/Data/login_check.php', formData)
             .then(res => {
                 if (res.data.success) { 
-                    // 로그인 성공 시
+                    // 로그인 성공 시 토큰을 로컬 스토리지에 저장
+                    localStorage.setItem('token', res.data.token);
+
+                    // 로그인 성공 알림을 띄우고, 앨범 페이지로 이동
                     alert(res.data.message);
                     navigate('/album', { state: { id } });
                 } else { 
-                    // 로그인 실패
                     alert(res.data.message);
                 }
             })
@@ -61,6 +62,7 @@ const LoginBox = () => {
     // console.log('id:', id);
     // console.log('password:', password);
     // console.log('isActive:', isActive);
+
     return (
         <div className="LoginBox">
             <section className="login-form">

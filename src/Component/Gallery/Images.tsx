@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import gallaryData1 from '../../ImageData/gallaryData1';
-import gallaryData2 from '../../ImageData/gallaryData2';
-import gallaryData3 from '../../ImageData/gallaryData3';
-import gallaryData4 from '../../ImageData/gallaryData4';
+import galleryData1 from '../../ImageData/galleryData1';
+import galleryData2 from '../../ImageData/galleryData2';
+import galleryData3 from '../../ImageData/galleryData3';
+import galleryData4 from '../../ImageData/galleryData4';
 import blankData from '../../ImageData/blankData';
 import '../../style/Images.scss';
 import Paging from './Paging';
@@ -19,17 +19,17 @@ interface TitleProps {
 interface Image {
     src: string;
 }
-interface GallaryDataArr {
+interface GalleryDataArr {
     [title: string]: Image[];
 }
 
 const Images: React.FC<TitleProps>= ({ titleProp }) => {
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
     const location = useLocation(); 
     const userId: string = location.state.id;
 
     const [title, setTitle] = useState(''); // sidebar에서 클릭한 title 값 넣기
-    const [gallaryDataArr, setGallaryDataArr] = useState<GallaryDataArr>({});
+    const [galleryDataArr, setGalleryDataArr] = useState<GalleryDataArr>({});
 
     useEffect(() => {
         setTitle(titleProp); // sidebar에서 클릭한 title 변경
@@ -48,18 +48,18 @@ const Images: React.FC<TitleProps>= ({ titleProp }) => {
                 }
             }
             // 갤러리 이미지 - 타계정 접근 권한 제한
-            const array: GallaryDataArr = {
-                [titleInfo[0].title]: gallaryData1,
-                [titleInfo[1].title]: userId === 'oeanb' ? gallaryData2 : blankData,
-                [titleInfo[2].title]: userId === 'oeanb' ? gallaryData3 : blankData,
-                [titleInfo[3].title]: gallaryData4,
+            const array: GalleryDataArr = {
+                [titleInfo[0].title]: galleryData1,
+                [titleInfo[1].title]: userId === 'oeanb' ? galleryData2 : blankData,
+                [titleInfo[2].title]: userId === 'oeanb' ? galleryData3 : blankData,
+                [titleInfo[3].title]: galleryData4,
             };
-            setGallaryDataArr(array);
+            setGalleryDataArr(array);
         })
         .catch(error => {
             console.log(error);
         });
-    }, [titleProp]);
+    }, [userId, titleProp]);
 
     const [page, setPage] = useState(1); // 현재 페이지 번호  
     const postPerPage: number = 20; // 페이지 당 이미지 개수
@@ -71,19 +71,18 @@ const Images: React.FC<TitleProps>= ({ titleProp }) => {
     let totalImage: Image[] = []; // 현재 title에 해당하는 전체 이미지
     let totalImgCount: number = 0; // 현재 title에 해당하는 전체 이미지 개수
  
-    if (Object.keys(gallaryDataArr).includes(titleProp)) {
-        currentPost = gallaryDataArr[titleProp].slice(indexOfFirtPost, indexOfLastPost);
-        totalImage = gallaryDataArr[titleProp];
-        totalImgCount = gallaryDataArr[titleProp].length;
+    if (Object.keys(galleryDataArr).includes(titleProp)) {
+        currentPost = galleryDataArr[titleProp].slice(indexOfFirtPost, indexOfLastPost);
+        totalImage = galleryDataArr[titleProp];
+        totalImgCount = galleryDataArr[titleProp].length;
     }
 
     const handlePageChange = useCallback((page: number) => {
         setPage(page);
-    }, [page]);
+    }, []);
     
     const access = '타계정 접근 권한 없음';
 
-    // console.log(page);
     return (
         <>
             <div className='top_area'>
@@ -98,25 +97,28 @@ const Images: React.FC<TitleProps>= ({ titleProp }) => {
                     style={{ display: title === '' ? "none" : "inline" }}
                 >
                     {title}
-                    { title !== '고양이' &&  title !== '내가 먹은 음식' ?  
+                    {title !== '고양이' &&  title !== '내가 먹은 음식' ?  
                         <span style={{ display: userId === 'oeanb' ? 'none' : 'inline' }}>
                             ({access})
                         </span>
                         : ''
                     }
                 </p>
-                <button className='upload'>사진 올리기</button>
             </div>
             <div className='scroll'>
                 <div className='grid-container'>
                     {currentPost.map((content ,id) => (
                         <div key={id} className="location-image">
                                 <img 
+                                    alt={'image' + id}
                                     src={content.src} 
                                     onClick={() => 
                                         userId !== 'oeanb' && // 타계정일 때
                                         (title !== '고양이' &&  title !== '내가 먹은 음식') ?
-                                        '' : navigate('/zoom', { state: { totalImage, currentPost, page, id }})
+                                        '' : navigate('/zoom', { 
+                                                state: { totalImage, currentPost, page, id, userId, albumTitle: title}, 
+                                                replace: true 
+                                            })
                                     }
                                 />
                         </div>

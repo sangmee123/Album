@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
 const CenterBox = styled.div`    
@@ -92,7 +92,6 @@ interface ActiveState {
 };
 
 const AnswerPw = () => {
-    const navigate = useNavigate();
     const location = useLocation();
     const userId  = location.state.userId;
 
@@ -120,7 +119,7 @@ const AnswerPw = () => {
                 && confirmPassword === true // 비밀번호 불일치 문구가 안 보여야 버튼 색상 활성화
 
         }));
-    }, [password, password_confirm, , confirmPassword]); 
+    }, [password, password_confirm, confirmPassword]); 
 
     const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setForm(prevForm => ({

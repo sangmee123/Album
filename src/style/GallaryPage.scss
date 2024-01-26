@@ -10,6 +10,25 @@
         box-shadow: 0 3px 3px rgba(0,0,0,0.2);
         position: fixed;
         z-index: 3;
+        .backBtn {
+            background-color: #786c5f;
+            width: 40px;
+            height: 40px;
+            color: white;
+            font-size: 30px;
+            border: none;
+            border-radius: 5px;
+            padding: 0px 5px;
+            margin-top: 10px;
+            margin-left: 20px;
+            z-index: 2;
+            position: absolute;
+            cursor: pointer;
+            &:hover {
+                background-color: #A29A91;
+                color: white;
+            }
+        }
         h1 {
             font-family: 'Sunflower', sans-serif;
             font-size: 25px;

@@ -55,8 +55,7 @@ const Find = styled.button<{checked: boolean}>`
 
 interface FormState {
     id: string,
-    phone: string,
-    password: string,
+    phone: string
 }
 
 const HintPw = () => {
@@ -64,10 +63,9 @@ const HintPw = () => {
     const [ isActive, setIsActive ] = useState(false);
     const [ form, setForm ] = useState<FormState>({
         id: '',
-        phone: '',
-        password: ''
+        phone: ''
     });
-    const { id, phone, password } = form;
+    const { id, phone } = form;
     
     useEffect(() => {
         // username와 phone 값의 유무에 따른 활성화 상태 

@@ -3,12 +3,13 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Images from './Images';
 import '../../style/GallaryPage.scss';
+import useTokenCheck from '../useTokenCheck';
 
 interface List {
     title: string;
 }
 
-const GallaryPage = () => {    
+const GalleryPage = () => {    
     const navigate = useNavigate();
     const location = useLocation();
     const userId: string = location.state.id;
@@ -19,11 +20,21 @@ const GallaryPage = () => {
     const [selectedTitle, setSelectedTitle] = useState(title); // 현재 선택한 앨범 title
     const [titleProp, setTitleProp] = useState(title); // 현재 선택한 title (자식 컴포넌트에게 prop으로 전달)
 
+    const { tokenExpired } = useTokenCheck(); // 토큰 체크 훅 사용
+
+    useEffect(() => {
+        // 토큰 체크
+        if (tokenExpired) {
+            alert('토큰이 만료되었습니다. 다시 로그인해주세요.');
+            navigate('/', { replace: true });
+        }
+    }, [tokenExpired, navigate]);
+
     useEffect(() => {        
         // 로그인 정보 가져오기
         const postData = new FormData();
         postData.append('id', userId);
-
+        
         axios.post('http://localhost/album/src/Data/login.php', postData)
         .then(res => {
             const data = res.data;
@@ -53,8 +64,9 @@ const GallaryPage = () => {
     }, [userId]);
 
     const handleLogout = useCallback((e: React.FormEvent) => {
-        e.preventDefault();
-        navigate('/');
+        // 로그아웃 시 로컬 스토리지에서 토큰 제거
+        localStorage.removeItem('token');
+        navigate('/', { replace: true });
     }, [navigate]);
 
     const onClick = useCallback((e: React.MouseEvent) => {
@@ -67,6 +79,10 @@ const GallaryPage = () => {
     return (
         <div className='container fadeIn'>
             <div className='navibar'>
+                <button 
+                    className='backBtn' 
+                    onClick={() => navigate('/album', {state: {id: userId}, replace: true })}
+                >⇦</button>
                 <h1>추억을 로그인</h1>
                 <form onSubmit={handleLogout}>
                     <button className='logoutBtn'>
@@ -97,4 +113,4 @@ const GallaryPage = () => {
     );
 }
 
-export default GallaryPage;
+export default GalleryPage;
