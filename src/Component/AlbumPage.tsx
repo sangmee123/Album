@@ -20,8 +20,8 @@ const Album = ()  => {
     useEffect(() => {
         // 토큰 체크
         if (tokenExpired) {
-            alert('토큰이 만료되었습니다. 다시 로그인해주세요.');
-            navigate('/', { replace: true });
+            const popup = alert('토큰이 만료되었습니다. 다시 로그인해주세요.');
+            popup === undefined && navigate('/', { replace: true });
         }
     }, [tokenExpired, navigate]);
 
