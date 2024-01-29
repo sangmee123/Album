@@ -4,18 +4,24 @@ import axios from 'axios';
 import Images from './Images';
 import '../../style/GallaryPage.scss';
 import useTokenCheck from '../useTokenCheck';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLoginForm } from '../../redux/features/authSlice';
+import { RootState } from '../../redux/store';
+import { setForm } from '../../redux/features/userSlice';
 
 interface List {
     title: string;
 }
 
 const GalleryPage = () => {    
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
-    const userId: string = location.state.id;
     const title: string = location.state.albumTitle;
 
-    const [userInfo, setUserInfo] = useState(''); // 사용자 이름 상태
+    const userId = useSelector((state: RootState) => state.auth.loginForm.id);
+    const username = useSelector((state: RootState) => state.user.username);
+    
     const [list, setList] = useState<List[]>([]); // 전체 title 담을 list
     const [selectedTitle, setSelectedTitle] = useState(title); // 현재 선택한 앨범 title
     const [titleProp, setTitleProp] = useState(title); // 현재 선택한 title (자식 컴포넌트에게 prop으로 전달)
@@ -27,26 +33,16 @@ const GalleryPage = () => {
         if (tokenExpired) {
             const popup = alert('토큰이 만료되었습니다. 다시 로그인해주세요.');
             popup === undefined && navigate('/', { replace: true });
+            dispatch(setLoginForm({ id: '', password: '' }));
+            dispatch(setForm({ username: '' }));
         }
-    }, [tokenExpired, navigate]);
+    }, [tokenExpired, navigate, dispatch]);
 
     useEffect(() => {        
-        // 로그인 정보 가져오기
+        /* 앨범 title 리스트 불러오기 */
         const postData = new FormData();
         postData.append('id', userId);
-        
-        axios.post('http://localhost/album/src/Data/login.php', postData)
-        .then(res => {
-            const data = res.data;
-            if (data.success) {
-                setUserInfo(data.username + '님');
-            }
-        })
-        .catch(error => {
-            console.log(error);
-        });
 
-        /* 앨범 title 리스트 불러오기 */
         axios.post('http://localhost/album/src/Data/GET_db.php', postData)
         .then(res => {
             const data = res.data;
@@ -67,7 +63,9 @@ const GalleryPage = () => {
         // 로그아웃 시 로컬 스토리지에서 토큰 제거
         localStorage.removeItem('token');
         navigate('/', { replace: true });
-    }, [navigate]);
+        dispatch(setLoginForm({ id: '', password: '' }));
+        dispatch(setForm({ username: '' }));
+    }, [dispatch, navigate]);
 
     const onClick = useCallback((e: React.MouseEvent) => {
         // sidebar의 title 클릭 시 해당 title 값으로 변경
@@ -81,12 +79,12 @@ const GalleryPage = () => {
             <div className='navibar'>
                 <button 
                     className='backBtn' 
-                    onClick={() => navigate('/album', {state: {id: userId}, replace: true })}
+                    onClick={() => navigate('/album')}
                 >⇦</button>
                 <h1>추억을 로그인</h1>
                 <form onSubmit={handleLogout}>
                     <button className='logoutBtn'>
-                        <b>{userInfo}</b><br/>로그아웃
+                        <b>{username}</b><br/>로그아웃
                     </button>
                 </form>
             </div>

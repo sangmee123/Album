@@ -1,11 +1,16 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { setTokenExpired } from '../redux/features/authSlice';
+import { RootState } from "../redux/store";
 
 export default function useTokenCheck() {
-    const [tokenExpired, setTokenExpired] = useState(false);
-    const handleTokenExpired = () => {
-        setTokenExpired(true);
+    const dispatch = useDispatch();
+    const tokenExpired = useSelector((state: RootState) => state.auth.tokenExpired);
+
+    const handleTokenExpired = useCallback(() => {
+        dispatch(setTokenExpired(true));
         localStorage.removeItem('token'); // 토큰 삭제
-    };
+    }, [dispatch]);
 
     useEffect(() => {
         const tokenCheck = setInterval(() => {
@@ -16,20 +21,20 @@ export default function useTokenCheck() {
                 return; // 토큰 없으면 종료
             } else {
                 try {
-                    const { jwtDecode } = require('jwt-decode');
-                    const decodedToken = jwtDecode(token);     
+                    const jwtDecode = require('jwt-decode');
+                    const decodedToken = jwtDecode(token);  
                     const sec = 1000; // 1초
                     const isTokenExpired = decodedToken.exp * sec < Date.now();
-                    isTokenExpired === true ? handleTokenExpired() : setTokenExpired(false);
+                    isTokenExpired === true ? handleTokenExpired() : dispatch(setTokenExpired(false));
                 } catch (error) {
-                    console.error('Error decoding token:', error);
+                    // console.error('Error decoding token:', error);
                     handleTokenExpired();
                 }
             }            
         }, 30000);
         
         return () => clearInterval(tokenCheck);
-    }, []);
+    }, [dispatch, handleTokenExpired]);
+
     return { tokenExpired };
 }
-

@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import { setForm } from '../../redux/features/userSlice';
 
 const MembershipBox = styled.div`
     width: 450px;
@@ -118,13 +121,6 @@ const Check = styled.div<{ checked: boolean }>`
     `};
 `;
 
-interface FormState {
-    id: string,
-    password: string,
-    password_confirm: string,
-    username: string,
-    phone: string,
-};
 interface ActiveState {
     confirmPassword: boolean,
     registerBtn: boolean
@@ -132,19 +128,14 @@ interface ActiveState {
 
 const Membership = () => {
     const navigate = useNavigate(); 
-    const [ form, setForm ] = useState<FormState>({
-        id: '',
-        password: '',
-        password_confirm: '',
-        username: '',
-        phone: ''
-    });
+    const dispatch = useDispatch();
+
+    const form = useSelector((state: RootState) => state.user);
     const { id, password, password_confirm, username, phone } = form;
 
-    // 비밀번호 불일치 문구 & 회원가입 버튼 색상 => 활성화 상태 변수
     const [ isActive, setIsActive ] = useState<ActiveState>({
-        confirmPassword: true, // 기본 설정값 (비밀번호 일치) 
-        registerBtn: false // 버튼 비활성화 설정값
+        confirmPassword: true, // 비밀번호 일치 기본 설정값
+        registerBtn: false // 회원가입 버튼 색상 기본 설정값
     });
     const { confirmPassword, registerBtn } = isActive;
     
@@ -153,19 +144,20 @@ const Membership = () => {
     
         if (name === "phone") {
             // 휴대폰 번호 입력 시 자동으로 하이픈 추가
-            const phoneNum = value.replace(/[^0-9]/g, '').replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
-                                  .replace(/(\-{1,2})$/g, '');
-            setForm(prev => ({ ...prev, [name]: phoneNum }));
+            const phoneNum = value
+                .replace(/[^0-9]/g, '')
+                .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
+                .replace(/(\-{1,2})$/g, '');
+            dispatch(setForm({ [name]: phoneNum })); // userSlice에서 제네릭 타입을 설정한 이유
         } else {
-            setForm(prev => ({ ...prev, [name]: value }));
+            dispatch(setForm({ [name]: value }));
         }
-    }, []);   
+    }, [dispatch]);   
 
     useEffect(() => {
         setIsActive(prev => ({
-            ...prev,
-            // 같이 같으면 비밀번호 불일치 문구 숨기기
-            confirmPassword: password_confirm === password, 
+            ...prev,      // 같이 같으면 비밀번호 불일치 문구 숨기기
+            confirmPassword: password === password_confirm, 
 
             // id, password, password_confirm, username, phone 값이 모두 있으면 회원가입 버튼 색상 활성화
             registerBtn: 
@@ -174,16 +166,16 @@ const Membership = () => {
                 && confirmPassword === true // 비밀번호 불일치 문구까지 안 보여야 회원가입 버튼 색상 활성화
                 && phone !== ''
         }));
-    }, [id, password_confirm, password, username, confirmPassword, phone]); 
-
+    }, [dispatch, id, password, password_confirm, username, phone, confirmPassword]); 
 
     // // 상태 및 변수를 로깅
     // console.log('id:', id);
     // console.log('password = ', password);
     // console.log('rePassword = ', password_confirm);
-    // console.log('confirmPassword = ', confirmPassword);
-    // console.log('register = ', register);
     // console.log('username:', username);
+    // console.log('phone:', phone);
+    // console.log('confirmPassword = ', confirmPassword);
+    // console.log('registerBtn = ', registerBtn);
 
     return (
         <>
@@ -198,6 +190,7 @@ const Membership = () => {
                     <Input 
                         type="text" 
                         name="id" 
+                        value={form.id}
                         onChange={handleInputChange}
                         required
                     />
@@ -206,6 +199,7 @@ const Membership = () => {
                     <Input 
                         type="password" 
                         name="password" 
+                        value={form.password}
                         onChange={handleInputChange}
                         required
                     />
@@ -214,6 +208,7 @@ const Membership = () => {
                     <Input 
                         type="password" 
                         name="password_confirm" 
+                        value={form.password_confirm}
                         onChange={handleInputChange}
                         required
                     />
@@ -224,6 +219,7 @@ const Membership = () => {
                             <Input
                                 type="text" 
                                 name="username" 
+                                value={form.username}
                                 onChange={handleInputChange}
                                 required
                             />

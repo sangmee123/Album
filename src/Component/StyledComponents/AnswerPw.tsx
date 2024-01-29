@@ -167,7 +167,7 @@ const AnswerPw = () => {
                 
                 <Input
                     type="password"
-                    name="password_confirm"
+                    name="password_confirm" 
                     onChange={handleInputChange}
                     placeholder='새 비밀번호 확인'
                     required

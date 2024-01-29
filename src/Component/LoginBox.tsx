@@ -1,37 +1,32 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLoginForm, setTokenExpired } from '../redux/features/authSlice'; 
+import { RootState } from '../redux/store';
 import HintId from './StyledComponents/HintId';
 import HintPw from './StyledComponents/HintPw';
 import Membership from './StyledComponents/Membership';
 import Album from './AlbumPage';
 import '../style/LoginBox.scss';
 
-interface FormState {
-    id: string;
-    password: string;
-}
-
 const LoginBox = () => {    
-    const [isActive, setIsActive] = useState(false);
-    const [form, setForm] = useState<FormState>({
-        id: '',
-        password: ''
-    });
-    const { id, password } = form;
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
+    const form = useSelector((state: RootState) => state.auth.loginForm);
+    const { id, password } = form;
+    const [isActive, setIsActive] = useState(false);
+    
     useEffect(() => {
         // id와 password 값의 유무에 따른 활성화 상태 
         setIsActive(id !== '' && password !== '');
-    }, [id, password]);
+        dispatch(setTokenExpired(false)); // 로그아웃일 때 토큰 만료 false
+    }, [id, password, dispatch]);
 
     const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        setForm(prevForm => ({
-            ...prevForm,
-            [e.target.name]: e.target.value
-        }));
-    }, []); 
+        dispatch(setLoginForm({ [e.target.name]: e.target.value })); // authSlice에서 제네릭 타입을 설정한 이유
+    }, [dispatch]); 
 
     const handleFormSubmit = useCallback((e: React.FormEvent) => {
         e.preventDefault();
@@ -44,10 +39,10 @@ const LoginBox = () => {
                 if (res.data.success) { 
                     // 로그인 성공 시 토큰을 로컬 스토리지에 저장
                     localStorage.setItem('token', res.data.token);
-
+                    
                     // 로그인 성공 알림을 띄우고, 앨범 페이지로 이동
                     alert(res.data.message);
-                    navigate('/album', { state: { id } });
+                    navigate('/album');
                 } else { 
                     alert(res.data.message);
                 }
@@ -56,7 +51,7 @@ const LoginBox = () => {
                 alert('서버가 연결되어 있지 않습니다.');
             });
         }
-    }, [id, isActive, navigate]);
+    }, [isActive, navigate]);
 
     // // 상태 및 변수를 로깅
     // console.log('id:', id);
@@ -73,6 +68,7 @@ const LoginBox = () => {
                             type="text"
                             id="id" 
                             name="id" 
+                            value={form.id}
                             onChange={handleInputChange}
                             required 
                         />
@@ -83,6 +79,7 @@ const LoginBox = () => {
                             type="password" 
                             id="password"
                             name="password" 
+                            value={form.password}
                             onChange={handleInputChange}
                             required 
                         />
