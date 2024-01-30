@@ -23,15 +23,14 @@ export default function useTokenCheck() {
                 try {
                     const jwtDecode = require('jwt-decode');
                     const decodedToken = jwtDecode(token);  
-                    const sec = 1000; // 1초
-                    const isTokenExpired = decodedToken.exp * sec < Date.now();
+                    const isTokenExpired = decodedToken.exp < Date.now();
                     isTokenExpired === true ? handleTokenExpired() : dispatch(setTokenExpired(false));
                 } catch (error) {
                     // console.error('Error decodedToken:', error);
                     handleTokenExpired();
                 }
             }            
-        }, 30000);
+        }, 60000);
         
         return () => clearInterval(tokenCheck);
     }, [dispatch, handleTokenExpired]);

@@ -37,9 +37,16 @@ if ($result->num_rows === 0) {
         // 비밀번호가 일치할 때
         $secretKey = 'This is my_secret_key'; 
         $issuedAt = time();
-        $expirationTime = $issuedAt + 60 * 10; // 10분 유효한 토큰
-        $payload = array('iat' => $issuedAt, 'exp' => $expirationTime);
-
+        $min = 60000;
+        $expirationTime = $issuedAt + 10 * $min; // 10분 유효한 토큰
+        
+        $payload = array(
+            'userId' => $row['id'],
+            'username' => $row['username'],
+            'iat' => $issuedAt,
+            'exp' => $expirationTime
+        );
+        
         $token = JWT::encode($payload, $secretKey, 'HS256'); // 토큰 생성
         $response = array('success' => true, 'message' => '로그인 성공', 'token' => $token);
         echo json_encode($response);
