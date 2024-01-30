@@ -33,21 +33,39 @@ const Album = ()  => {
 
     useEffect(() => {
         // 로그인 정보 가져오기
+        const token = localStorage.getItem('token');
         const postData = new FormData();
-        postData.append('id', userId);
+        postData.append('token', token ?? '');
 
         axios.post('http://localhost/album/src/Data/login.php', postData)
         .then(res => {
+            console.log(res.data); // token decoding result
             const data = res.data;
-            if (data.success) {
+            if (data.success) { 
                 dispatch(setForm({ username : data.username + '님' }));
                 setLoading(false); // 데이터 로딩 완료 표시
-            }
+            } 
         })
         .catch(() => {
             setBtnLogout(false);
             setLoading(false); // 데이터 로딩 실패 표시
         });
+
+        // const postData = new FormData();
+        // postData.append('id', userId);
+
+        // axios.post('http://localhost/album/src/Data/login.php', postData)
+        // .then(res => {
+        //     const data = res.data;
+        //     if (data.success) {
+        //         dispatch(setForm({ username : data.username + '님' }));
+        //         setLoading(false); // 데이터 로딩 완료 표시
+        //     }
+        // })
+        // .catch(() => {
+        //     setBtnLogout(false);
+        //     setLoading(false); // 데이터 로딩 실패 표시
+        // });
     }, [userId, dispatch]);
 
     const onClick = useCallback(() => setDarkMode(prev => !prev), []);
