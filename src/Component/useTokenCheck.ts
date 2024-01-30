@@ -27,7 +27,7 @@ export default function useTokenCheck() {
                     const isTokenExpired = decodedToken.exp * sec < Date.now();
                     isTokenExpired === true ? handleTokenExpired() : dispatch(setTokenExpired(false));
                 } catch (error) {
-                    // console.error('Error decoding token:', error);
+                    // console.error('Error decodedToken:', error);
                     handleTokenExpired();
                 }
             }            

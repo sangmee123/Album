@@ -79,7 +79,7 @@ const GalleryPage = () => {
             <div className='navibar'>
                 <button 
                     className='backBtn' 
-                    onClick={() => navigate('/album')}
+                    onClick={() => navigate('/album', { replace: true })}
                 >⇦</button>
                 <h1>추억을 로그인</h1>
                 <form onSubmit={handleLogout}>
