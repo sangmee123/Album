@@ -37,8 +37,9 @@ if ($result->num_rows === 0) {
         // 비밀번호가 일치할 때
         $secretKey = 'This is my_secret_key'; 
         $issuedAt = time();
+        $effectiveTime = 10;
         $min = 60;
-        $expirationTime = $issuedAt + 2 * $min; // 10분 유효한 토큰
+        $expirationTime = $issuedAt + $effectiveTime * $min; // 10분 유효한 토큰
         
         $payload = array(
             'userId' => $row['id'],

@@ -40,7 +40,7 @@ const AlbumPage = ()  => {
         axios.post('http://localhost/album/src/Data/login.php', postData)
         .then(res => {
             const data = res.data;
-            console.log('data: ', data)
+            // console.log('data: ', data);
             if (data.success) { 
                 dispatch(setForm({ username : data.username + '님' }));
                 setLoading(false); // 데이터 로딩 완료 표시
@@ -98,4 +98,3 @@ const AlbumPage = ()  => {
 };
 
 export default AlbumPage;
-
