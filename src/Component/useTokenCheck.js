@@ -1,11 +1,11 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { setTokenExpired } from '../redux/features/authSlice';
-import { RootState } from "../redux/store";
+import { jwtDecode } from "jwt-decode";
 
 export default function useTokenCheck() {
     const dispatch = useDispatch();
-    const tokenExpired = useSelector((state: RootState) => state.auth.tokenExpired);
+    const tokenExpired = useSelector(state => state.auth.tokenExpired);
 
     const handleTokenExpired = useCallback(() => {
         dispatch(setTokenExpired(true));
@@ -21,11 +21,11 @@ export default function useTokenCheck() {
                 return; // 토큰 없으면 종료
             } else {
                 try {
-                    const jwtDecode = require('jwt-decode');
-                    const decodedToken = jwtDecode(token);  
-                    const isTokenExpired = decodedToken.exp < Date.now();
+                    const decodedToken = jwtDecode(token); // token의 만료시간은 sec 단위  
+                    let isTokenExpired = decodedToken.exp * 1000 < Date.now(); // Date객체는 ms 단위
+                    // token과 Date 객체의 단위를 같게 하려면 1000(1sec)을 곱해야함.
                     isTokenExpired === true ? handleTokenExpired() : dispatch(setTokenExpired(false));
-                } catch (error) {
+                } catch {
                     // console.error('Error decodedToken:', error);
                     handleTokenExpired();
                 }

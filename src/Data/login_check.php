@@ -32,13 +32,13 @@ if ($result->num_rows === 0) {
     // 아이디가 존재할 때
     $row = $result->fetch_assoc();
     $storedPassword = $row['password']; // DB에 저장된 비밀번호
-
+    $issuedAt = '';
     if (password_verify($password, $storedPassword)) {
         // 비밀번호가 일치할 때
         $secretKey = 'This is my_secret_key'; 
         $issuedAt = time();
-        $min = 60 * 1000;
-        $expirationTime = $issuedAt + 10 * $min; // 10분 유효한 토큰
+        $min = 60;
+        $expirationTime = $issuedAt + 2 * $min; // 10분 유효한 토큰
         
         $payload = array(
             'userId' => $row['id'],
@@ -48,7 +48,12 @@ if ($result->num_rows === 0) {
         );
         
         $token = JWT::encode($payload, $secretKey, 'HS256'); // 토큰 생성
-        $response = array('success' => true, 'message' => '로그인 성공', 'token' => $token);
+        $response = array(
+            'success' => true,
+            'message' => '로그인 성공', 
+            'token' => $token, 
+            'time' => $issuedAt
+        );
         echo json_encode($response);
     } else {
         $response = array('success' => false, 'message' => '비밀번호가 일치하지 않습니다.');

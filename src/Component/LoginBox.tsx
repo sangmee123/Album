@@ -7,7 +7,7 @@ import { RootState } from '../redux/store';
 import HintId from './StyledComponents/HintId';
 import HintPw from './StyledComponents/HintPw';
 import Membership from './StyledComponents/Membership';
-import Album from './AlbumPage';
+import AlbumPage from './AlbumPage';
 import '../style/LoginBox.scss';
 
 const LoginBox = () => {    
@@ -44,6 +44,7 @@ const LoginBox = () => {
                     alert(res.data.message);
                     navigate('/album');
                 } else { 
+                    // 로그인 실패
                     alert(res.data.message);
                 }
             })
@@ -97,7 +98,7 @@ const LoginBox = () => {
                 </div>
             </section>
             <Routes>
-                <Route path="/album" element={<Album />} />
+                <Route path="/album" element={<AlbumPage />} />
                 <Route path="/id" element={<HintId />}></Route>
                 <Route path="/pw" element={<HintPw />}></Route>
                 <Route path="/membership" element={<Membership />}></Route>

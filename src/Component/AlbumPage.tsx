@@ -9,7 +9,7 @@ import useTokenCheck from './useTokenCheck';
 import CarouselImg from './CarouselImg'; 
 import '../style/Album.scss';
 
-const Album = ()  => {
+const AlbumPage = ()  => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -39,33 +39,17 @@ const Album = ()  => {
 
         axios.post('http://localhost/album/src/Data/login.php', postData)
         .then(res => {
-            console.log(res.data); // token decoding result
             const data = res.data;
+            console.log('data: ', data)
             if (data.success) { 
                 dispatch(setForm({ username : data.username + '님' }));
                 setLoading(false); // 데이터 로딩 완료 표시
-            } 
+            }
         })
         .catch(() => {
             setBtnLogout(false);
             setLoading(false); // 데이터 로딩 실패 표시
         });
-
-        // const postData = new FormData();
-        // postData.append('id', userId);
-
-        // axios.post('http://localhost/album/src/Data/login.php', postData)
-        // .then(res => {
-        //     const data = res.data;
-        //     if (data.success) {
-        //         dispatch(setForm({ username : data.username + '님' }));
-        //         setLoading(false); // 데이터 로딩 완료 표시
-        //     }
-        // })
-        // .catch(() => {
-        //     setBtnLogout(false);
-        //     setLoading(false); // 데이터 로딩 실패 표시
-        // });
     }, [userId, dispatch]);
 
     const onClick = useCallback(() => setDarkMode(prev => !prev), []);
@@ -113,4 +97,5 @@ const Album = ()  => {
     );
 };
 
-export default Album;
+export default AlbumPage;
+
