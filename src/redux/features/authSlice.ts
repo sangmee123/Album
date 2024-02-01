@@ -5,7 +5,8 @@ interface AuthState {
     id: string;
     password: string;
   };
-  tokenExpired: boolean; // 새로운 상태 변수 추가
+  tokenExpired: boolean; 
+  darkMode: boolean;
 }
 
 const initialState: AuthState = {
@@ -13,7 +14,8 @@ const initialState: AuthState = {
     id: '',
     password: ''
   },
-  tokenExpired: false // 초기값 설정
+  tokenExpired: false,
+  darkMode: false
 };
 
 const authSlice = createSlice({
@@ -25,9 +27,20 @@ const authSlice = createSlice({
     },
     setTokenExpired: (state, action: PayloadAction<boolean>) => {
       state.tokenExpired = action.payload;
+      if (action.payload) { // 토큰 만료 시, 모든 상태 변수 초기화
+        state.loginForm = initialState.loginForm;
+        state.darkMode = initialState.darkMode;
+      }
+    },
+    setDarkMode: (state, action: PayloadAction<boolean>) => {
+      state.darkMode = action.payload;
+    },
+    logout: (state) => { // 로그아웃 시, 모든 상태 변수 초기화
+      state.loginForm = initialState.loginForm;
+      state.darkMode = initialState.darkMode;
     },
   },
 });
 
-export const { setLoginForm, setTokenExpired } = authSlice.actions;
+export const { setLoginForm, setTokenExpired, setDarkMode, logout } = authSlice.actions;
 export default authSlice.reducer;

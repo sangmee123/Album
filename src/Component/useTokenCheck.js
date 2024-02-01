@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { setTokenExpired } from '../redux/features/authSlice';
 import { jwtDecode } from "jwt-decode";
@@ -30,7 +30,7 @@ export default function useTokenCheck() {
                     handleTokenExpired();
                 }
             }            
-        }, 60000);
+        }, 10000);
         
         return () => clearInterval(tokenCheck);
     }, [dispatch, handleTokenExpired]);

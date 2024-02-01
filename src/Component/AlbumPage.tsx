@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLoginForm } from '../redux/features/authSlice';
+import { setDarkMode, logout } from '../redux/features/authSlice';
 import { setForm } from '../redux/features/userSlice';
 import { RootState } from '../redux/store';
 import useTokenCheck from './useTokenCheck';
@@ -13,12 +13,12 @@ const AlbumPage = ()  => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const [darkMode, setDarkMode] = useState(false);
     const [loading, setLoading] = useState(true); // 데이터 로딩 상태
     const [btnLogout, setBtnLogout] = useState(true); // 로그아웃 버튼 상태
 
     const userId = useSelector((state: RootState) => state.auth.loginForm.id);
     const username = useSelector((state: RootState) => state.user.username);
+    const darkMode = useSelector((state: RootState) => state.auth.darkMode);
     const { tokenExpired } = useTokenCheck(); // 토큰 체크 훅 사용
   
     useEffect(() => {
@@ -26,7 +26,6 @@ const AlbumPage = ()  => {
         if (tokenExpired) {
             const popup = alert('토큰이 만료되었습니다. 다시 로그인해주세요.');
             popup === undefined && navigate('/', { replace: true });
-            dispatch(setLoginForm({ id: '', password: '' }));
             dispatch(setForm({ username: '' }));
         }
     }, [tokenExpired, navigate, dispatch]);
@@ -52,12 +51,15 @@ const AlbumPage = ()  => {
         });
     }, [userId, dispatch]);
 
-    const onClick = useCallback(() => setDarkMode(prev => !prev), []);
+    const onClick = useCallback(() => {
+        dispatch(setDarkMode(!darkMode));
+    }, [dispatch, darkMode]);
+
     const handleLogout = useCallback((e: React.FormEvent) => {
         e.preventDefault();
         localStorage.removeItem('token'); // 토큰 삭제
         navigate('/', { replace: true });
-        dispatch(setLoginForm({ id: '', password: '' }));
+        dispatch(logout());
         dispatch(setForm({ username: '' }));
     }, [dispatch, navigate]);
     
