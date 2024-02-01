@@ -5,7 +5,7 @@ import Images from './Images';
 import '../../style/GallaryPage.scss';
 import useTokenCheck from '../useTokenCheck';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLoginForm } from '../../redux/features/authSlice';
+import { setLoginForm, setDarkMode } from '../../redux/features/authSlice';
 import { RootState } from '../../redux/store';
 import { setForm } from '../../redux/features/userSlice';
 
@@ -21,6 +21,7 @@ const GalleryPage = () => {
 
     const userId = useSelector((state: RootState) => state.auth.loginForm.id);
     const username = useSelector((state: RootState) => state.user.username);
+    const darkMode = useSelector((state: RootState) => state.auth.darkMode);
     
     const [list, setList] = useState<List[]>([]); // 전체 title 담을 list
     const [selectedTitle, setSelectedTitle] = useState(title); // 현재 선택한 앨범 title
@@ -59,6 +60,10 @@ const GalleryPage = () => {
         });
     }, [userId]);
 
+    const handleDarkMode = useCallback(() => {
+        dispatch(setDarkMode(!darkMode));
+    }, [dispatch, darkMode]);
+
     const handleLogout = useCallback((e: React.FormEvent) => {
         // 로그아웃 시 로컬 스토리지에서 토큰 제거
         localStorage.removeItem('token');
@@ -75,12 +80,21 @@ const GalleryPage = () => {
     }, []);
 
     return (
-        <div className='container fadeIn'>
+        <div className={`container fadeIn ${darkMode === true ? 'darkMode' : 'light'}`}>
             <div className='navibar'>
+                <img
+                    src={darkMode === true ? "../images/light.png" : "../images/dark.png"}
+                    className="icon"
+                    width="40"
+                    onClick={handleDarkMode}
+                    alt="Icon"
+                />
                 <button 
                     className='backBtn' 
                     onClick={() => navigate('/album', { replace: true })}
-                >⇦</button>
+                >
+                    ⇦
+                </button>
                 <h1>추억을 로그인</h1>
                 <form onSubmit={handleLogout}>
                     <button className='logoutBtn'>
@@ -105,7 +119,7 @@ const GalleryPage = () => {
                     ))}
                 </ul>
             </div>
-            <Images titleProp={titleProp}/> 
+            <Images titleProp={titleProp} /> 
             {/* 변경된 title 값을 Images 컴포넌트에 prop으로 넘겨주기 */}
         </div>
     );

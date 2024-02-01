@@ -1,3 +1,23 @@
+.darkMode {
+    background-color: #968d83;
+    .top_area {
+        .title {
+            color: white;
+        }
+    }
+    .scroll {
+        border-top: 1px solid #b5ab9f;
+        overflow-x: hidden;
+        overflow-y: auto;
+        .grid-container {
+            background-color: #968d83;
+            .location-image {
+                border: 1px solid #b5ab9f;
+            }
+        }
+    }
+}
+
 .top_area {
     margin-top: 80px;
     margin-bottom: 20px;
@@ -58,6 +78,7 @@
                 filter: blur(0px);
                 transition: filter 0.3s ease-in;
                 transition: scale 0.3s ease-in;
+                cursor: pointer;
                 &:hover {
                     filter: blur(2px);
                     transform: scale(1.2);

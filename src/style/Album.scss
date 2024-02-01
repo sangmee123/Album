@@ -104,10 +104,15 @@ body { margin: 0; }
 } 
 
 /* 다크모드와 라이트모드의 교집합 */
+button {
+    cursor: pointer;
+}
+
 .icon {
     float: left;
     margin-top: 10px;
     margin-left: 10px;
+    cursor: pointer;
 }
 
 .exit {
@@ -147,7 +152,6 @@ body { margin: 0; }
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
-    cursor: pointer; 
     &:after {
         position: absolute;
         content: "";

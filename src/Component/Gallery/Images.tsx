@@ -14,7 +14,7 @@ import { RootState } from '../../redux/store';
 interface List {
     title: string;
 }
-interface TitleProps {
+interface Props {
     titleProp: string;
 }
 
@@ -25,7 +25,7 @@ interface GalleryDataArr {
     [title: string]: Image[];
 }
 
-const Images: React.FC<TitleProps>= ({ titleProp }) => {
+const Images: React.FC<Props>= ({ titleProp }) => {
     const navigate = useNavigate();
     const location = useLocation(); 
     

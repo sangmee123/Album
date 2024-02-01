@@ -51,7 +51,7 @@ const AlbumPage = ()  => {
         });
     }, [userId, dispatch]);
 
-    const onClick = useCallback(() => {
+    const handleDarkMode = useCallback(() => {
         dispatch(setDarkMode(!darkMode));
     }, [dispatch, darkMode]);
 
@@ -79,7 +79,7 @@ const AlbumPage = ()  => {
                 src={darkMode === true ? "images/light.png" : "images/dark.png"}
                 className="icon"
                 width="40"
-                onClick={onClick}
+                onClick={handleDarkMode}
                 alt="Icon"
             />
             <form onSubmit={handleLogout}>
