@@ -30,7 +30,7 @@ export default function useTokenCheck() {
                     handleTokenExpired();
                 }
             }            
-        }, 10000);
+        }, 60000);
         
         return () => clearInterval(tokenCheck);
     }, [dispatch, handleTokenExpired]);
