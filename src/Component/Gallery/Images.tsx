@@ -112,7 +112,7 @@ const Images: React.FC<Props>= ({ titleProp }) => {
                     {currentPost.map((content ,id) => (
                         <div key={id} className="location-image">
                                 <img 
-                                    alt={'image' + id}
+                                    alt={`${title} 이미지${id}`}
                                     src={content.src} 
                                     onClick={() => 
                                         userId !== 'oeanb' && // 타계정일 때
