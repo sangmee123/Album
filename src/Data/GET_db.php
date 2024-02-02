@@ -14,12 +14,12 @@ if ($mysqli->connect_error) {
 }
 
 $id = $_POST['id'];
-if($id === 'oeanb') {
+if($id === 'oeanb') { // admin 계정
     $selectQuery = "select * from image_data;";  
-} else {
+} else { 
     $selectQuery = "select * from image_data2;";  
 }
-// $selectQuery = "SELECT * FROM user_image_data WHERE user_id = $id";
+
 $result = $mysqli->query($selectQuery);
 
 if ($result) {
