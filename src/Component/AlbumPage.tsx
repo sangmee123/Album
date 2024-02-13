@@ -42,7 +42,7 @@ const AlbumPage = ()  => {
             // console.log('data: ', data);
             if (data.success) { 
                 dispatch(setForm({ username : data.username + '님' }));
-                setLoading(true); // 데이터 로딩 완료 표시
+                setLoading(false); // 데이터 로딩 완료 표시
             }
         })
         .catch(() => {
