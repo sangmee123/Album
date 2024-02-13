@@ -20,7 +20,7 @@ $token = $_POST['token'];
 
 try {
     // 토큰 디코딩
-    $secretKey = ''; 
+    $secretKey = 'This is my_secret_key'; 
     $decoded = JWT::decode($token, new Key($secretKey, 'HS256'));
     $userId = $decoded->userId; // 토큰의 payload 정보
 

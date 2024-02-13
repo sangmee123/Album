@@ -104,9 +104,7 @@ body { margin: 0; }
 } 
 
 /* 다크모드와 라이트모드의 교집합 */
-button {
-    cursor: pointer;
-}
+button { cursor: pointer; }
 
 .icon {
     float: left;
@@ -115,7 +113,7 @@ button {
     cursor: pointer;
 }
 
-.exit {
+.exit { // 로그아웃 버튼
     width: 90px;
     height: 40px;
     font-size: 12px;
@@ -132,14 +130,14 @@ button {
     }
 }
 
-.crsl {
+.crsl { // 캐로셀
     width: 960px;
     height: 550px;
     top: 10%;
     margin: 0 auto;
 }
-// 펼쳐보기 버튼 
-.entrance {
+
+.entrance { // 펼쳐보기 버튼 
     display: block;
     width: 25%;
     text-decoration: none;
@@ -162,10 +160,10 @@ button {
         direction: rtl;
         z-index: -1;
         box-shadow:
-         -7px -7px 20px 0px #fff9,
-         -4px -4px 35px 0px #fff9,
-         5px 5px 15px 5px #0002,
-         4px 4px 8px 0px #0002;
+            -7px -7px 20px 0px #fff9,
+            -4px -4px 35px 0px #fff9,
+            5px 5px 15px 5px #0002,
+            4px 4px 8px 0px #0002;
         transition: all 0.3s ease;
     }
     &:hover {
@@ -180,73 +178,71 @@ button {
     }
 }
 
-/** BEGIN CSS **/
+/** 
+    Animation - Vendor prefixes 
+    -ms-: Microsoft Edge
+    -webkit-: Chrome, Safari
+    -moz-: Firefox
+    -o-: Opera
+**/
+@mixin rotate-zero {
+    transform: rotate(0deg);
+    -ms-transform: rotate(0deg); 
+    -webkit-transform: rotate(0deg); 
+    -o-transform: rotate(0deg); 
+    -moz-transform: rotate(0deg);
+}
+@mixin rotate-full {
+    transform: rotate(360deg);
+    -ms-transform: rotate(360deg); 
+    -webkit-transform: rotate(360deg); 
+    -o-transform: rotate(360deg); 
+    -moz-transform: rotate(360deg);
+}
+
 @keyframes rotate-loading {
-    0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
-    100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+    0%  { @include rotate-zero; }
+    100% { @include rotate-full; }
 }
-
 @-moz-keyframes rotate-loading {
-    0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
-    100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+    0%  { @include rotate-zero; }
+    100% { @include rotate-full; }
 }
-
 @-webkit-keyframes rotate-loading {
-    0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
-    100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+    0%  { @include rotate-zero; }
+    100% { @include rotate-full; }
 }
-
 @-o-keyframes rotate-loading {
-    0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
-    100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
-}
-
-@keyframes rotate-loading {
-    0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
-    100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
-}
-
-@-moz-keyframes rotate-loading {
-    0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
-    100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
-}
-
-@-webkit-keyframes rotate-loading {
-    0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
-    100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
-}
-
-@-o-keyframes rotate-loading {
-    0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
-    100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+    0%  { @include rotate-zero; }
+    100% { @include rotate-full; }
 }
 
 @keyframes loading-text-opacity {
     0%  {opacity: 0}
     20% {opacity: 0}
     50% {opacity: 1}
-    100%{opacity: 0}
+    100% {opacity: 0}
 }
 
 @-moz-keyframes loading-text-opacity {
     0%  {opacity: 0}
     20% {opacity: 0}
     50% {opacity: 1}
-    100%{opacity: 0}
+    100% {opacity: 0}
 }
 
 @-webkit-keyframes loading-text-opacity {
     0%  {opacity: 0}
     20% {opacity: 0}
     50% {opacity: 1}
-    100%{opacity: 0}
+    100% {opacity: 0}
 }
 
 @-o-keyframes loading-text-opacity {
     0%  {opacity: 0}
     20% {opacity: 0}
     50% {opacity: 1}
-    100%{opacity: 0}
+    100% {opacity: 0}
 }
 
 /* 로딩 사이클 */
@@ -257,14 +253,19 @@ button {
         border-radius: 100%;
         border: 2px solid transparent;
         border-color: transparent rgb(144, 144, 144) transparent rgb(229, 229, 229);
+
         -moz-animation: rotate-loading 1.5s linear 0s infinite normal;
-        -moz-transform-origin: 50% 50%;
         -o-animation: rotate-loading 1.5s linear 0s infinite normal;
-        -o-transform-origin: 50% 50%;
         -webkit-animation: rotate-loading 1.5s linear 0s infinite normal;
+        animation: rotate-loading 1.5s linear 0s infinite normal;       
+
+        /* 로딩 사이클 세팅: 중앙 */
+        -moz-transform-origin: 50% 50%;
+        -o-transform-origin: 50% 50%;
         -webkit-transform-origin: 50% 50%;
-        animation: rotate-loading 1.5s linear 0s infinite normal;
-        transform-origin: 50% 50%;
+        transform-origin: 50% 50%; 
+
+        /* 부드럽게 변화: ease-in-out(천천-보통-천천) */
         -webkit-transition: all 0.5s ease-in-out;
         -moz-transition: all 0.5s ease-in-out;
         -ms-transition: all 0.5s ease-in-out;
@@ -286,6 +287,7 @@ button {
         text-align: center;
         text-transform: uppercase;
         margin-top: -60px;
+
         -moz-animation: loading-text-opacity 1.3s linear 0s infinite normal;
         -o-animation: loading-text-opacity 1.3s linear 0s infinite normal;
         -webkit-animation: loading-text-opacity 1.3s linear 0s infinite normal;

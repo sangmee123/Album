@@ -35,7 +35,7 @@ if ($result->num_rows === 0) {
     $issuedAt = '';
     if (password_verify($password, $storedPassword)) {
         // 비밀번호가 일치할 때
-        $secretKey = ''; 
+        $secretKey = 'This is my_secret_key'; 
         $issuedAt = time();
         $min = 60;
         $effectiveTime = 10 * $min;
