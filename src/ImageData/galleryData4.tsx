@@ -1,4 +1,4 @@
-export default [
+const galleryData4 = [
     { "src": "../images/food/food1.jpg" },
     { "src": "../images/food/food2.jpg" },
     { "src": "../images/food/food3.jpg" },
@@ -66,3 +66,4 @@ export default [
     { "src": "https://i.postimg.cc/vZn7ghB7/Kakao-Talk-20240115-202752954-29.jpg" }
 ];
   
+export default galleryData4;

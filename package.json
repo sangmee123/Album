@@ -54,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/jwt-decode": "^3.1.0",
     "@types/react-js-pagination": "^3.0.7",
     "sass": "^1.69.5"

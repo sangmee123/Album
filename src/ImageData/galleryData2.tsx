@@ -1,4 +1,4 @@
-export default [
+const galleryData2 = [
     { "src": "../images/graduation/graduation1.jpg" },
     { "src": "../images/graduation/graduation2.jpg" },
     { "src": "../images/graduation/graduation3.jpg" },
@@ -25,3 +25,4 @@ export default [
     { "src": "../images/graduation/s_DSC04323.jpg" }
 ];
   
+export default galleryData2;
