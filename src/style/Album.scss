@@ -178,71 +178,17 @@ button { cursor: pointer; }
     }
 }
 
-/** 
-    Animation - Vendor prefixes 
-    -ms-: Microsoft Edge
-    -webkit-: Chrome, Safari
-    -moz-: Firefox
-    -o-: Opera
-**/
-@mixin rotate-zero {
-    transform: rotate(0deg);
-    -ms-transform: rotate(0deg); 
-    -webkit-transform: rotate(0deg); 
-    -o-transform: rotate(0deg); 
-    -moz-transform: rotate(0deg);
-}
-@mixin rotate-full {
-    transform: rotate(360deg);
-    -ms-transform: rotate(360deg); 
-    -webkit-transform: rotate(360deg); 
-    -o-transform: rotate(360deg); 
-    -moz-transform: rotate(360deg);
-}
-
+/* Animation */
 @keyframes rotate-loading {
-    0%  { @include rotate-zero; }
-    100% { @include rotate-full; }
-}
-@-moz-keyframes rotate-loading {
-    0%  { @include rotate-zero; }
-    100% { @include rotate-full; }
-}
-@-webkit-keyframes rotate-loading {
-    0%  { @include rotate-zero; }
-    100% { @include rotate-full; }
-}
-@-o-keyframes rotate-loading {
-    0%  { @include rotate-zero; }
-    100% { @include rotate-full; }
+    0%  { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 @keyframes loading-text-opacity {
-    0%  {opacity: 0}
-    20% {opacity: 0}
-    50% {opacity: 1}
-    100% {opacity: 0}
-}
-
-@-moz-keyframes loading-text-opacity {
-    0%  {opacity: 0}
-    20% {opacity: 0}
-    50% {opacity: 1}
-    100% {opacity: 0}
-}
-
-@-webkit-keyframes loading-text-opacity {
-    0%  {opacity: 0}
-    20% {opacity: 0}
-    50% {opacity: 1}
-    100% {opacity: 0}
-}
-
-@-o-keyframes loading-text-opacity {
-    0%  {opacity: 0}
-    20% {opacity: 0}
-    50% {opacity: 1}
-    100% {opacity: 0}
+    0%  { opacity: 0 }
+    20% { opacity: 0 }
+    50% { opacity: 1 }
+    100% { opacity: 0 }
 }
 
 /* 로딩 사이클 */
@@ -253,24 +199,9 @@ button { cursor: pointer; }
         border-radius: 100%;
         border: 2px solid transparent;
         border-color: transparent rgb(144, 144, 144) transparent rgb(229, 229, 229);
-
-        -moz-animation: rotate-loading 1.5s linear 0s infinite normal;
-        -o-animation: rotate-loading 1.5s linear 0s infinite normal;
-        -webkit-animation: rotate-loading 1.5s linear 0s infinite normal;
         animation: rotate-loading 1.5s linear 0s infinite normal;       
-
-        /* 로딩 사이클 세팅: 중앙 */
-        -moz-transform-origin: 50% 50%;
-        -o-transform-origin: 50% 50%;
-        -webkit-transform-origin: 50% 50%;
-        transform-origin: 50% 50%; 
-
-        /* 부드럽게 변화: ease-in-out(천천-보통-천천) */
-        -webkit-transition: all 0.5s ease-in-out;
-        -moz-transition: all 0.5s ease-in-out;
-        -ms-transition: all 0.5s ease-in-out;
-        -o-transition: all 0.5s ease-in-out;
-        transition: all 0.5s ease-in-out;
+        transform-origin: 50% 50%; /* 로딩 사이클 세팅: 중앙 */
+        transition: all 0.5s ease-in-out;  /* 부드럽게 변화: ease-in-out(천천-보통-천천) */
         &:hover {
             border-color: transparent #E45635 transparent #E45635;
         }
@@ -287,10 +218,6 @@ button { cursor: pointer; }
         text-align: center;
         text-transform: uppercase;
         margin-top: -60px;
-
-        -moz-animation: loading-text-opacity 1.3s linear 0s infinite normal;
-        -o-animation: loading-text-opacity 1.3s linear 0s infinite normal;
-        -webkit-animation: loading-text-opacity 1.3s linear 0s infinite normal;
         animation: loading-text-opacity 1.3s linear 0s infinite normal;
     }
 }

@@ -141,13 +141,8 @@ button {
     cursor: pointer;
 }
 
-.fadeIn {
-    -ms-animation: fadein 2s; // Microsoft Edge
-    -moz-animation: fadein 2s; // Firefox 
-    -webkit-animation: fadein 2s; // Chrome, Safari 
-    -o-animation: fadein 2s; // Opera 
-    animation: fadein 2s;
-}
+.fadeIn { animation: fadein 2s; }
+
 @keyframes fadein {
     from { opacity: 0; }
     to { opacity: 1; }
