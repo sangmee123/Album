@@ -146,7 +146,7 @@ const AnswerPw = () => {
             </Font>   
             <form
                 method="POST"
-                action="http://localhost/album/src/Data/change_password.php"
+                action="../../Data/change_password.php"
                 onSubmit={handleFormSubmit}
             >
                 <Input 

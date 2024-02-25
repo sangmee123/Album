@@ -44,7 +44,7 @@ const GalleryPage = () => {
         const postData = new FormData();
         postData.append('id', userId);
 
-        axios.post('http://localhost/album/src/Data/GET_db.php', postData)
+        axios.post('../../Data/GET_db.php', postData)
         .then(res => {
             const data = res.data;
             const titleInfo: List[] = [];

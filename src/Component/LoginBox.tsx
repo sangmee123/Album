@@ -34,7 +34,7 @@ const LoginBox = () => {
         const formData = new FormData(formElement); 
     
         if (isActive) {
-            axios.post('http://localhost/album/src/Data/login_check.php', formData)
+            axios.post('../Data/login_check.php', formData)
             .then(res => {
                 if (res.data.success) { 
                     // 로그인 성공 시 토큰을 로컬 스토리지에 저장

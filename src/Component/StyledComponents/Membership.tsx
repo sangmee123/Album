@@ -183,7 +183,7 @@ const Membership = () => {
                 <H1>회원가입</H1>
                 <Form 
                     method="POST"
-                    action="http://localhost/album/src/Data/register.php"
+                    action="../../Data/register.php"
                     onSubmit={(e) => registerBtn === false && e.preventDefault()}
                 >
                     <Label>아이디</Label>

@@ -35,7 +35,7 @@ const CarouselImg: React.FC<CarouselImgProp> = ({ userId }) => {
         // });
 
         // 이미지 관련 데이터 불러오기
-        axios.post('http://localhost/album/src/Data/GET_db.php', postData)
+        axios.post('../Data/GET_db.php', postData)
         .then(res => {
             const data = res.data;
             const updatedImageData: ImageData[] = [];
