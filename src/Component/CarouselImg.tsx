@@ -76,7 +76,7 @@ const CarouselImg: React.FC<CarouselImgProp> = ({ userId }) => {
                         <div className="leftBox">   
                             <h3>{content.title} 앨범집</h3>
                             {content.urlLeft.map((url, urlIndex) => (
-                                <img key={urlIndex} src={url} width={165} alt="이미지" />
+                                <img key={urlIndex} src={url} width={165} alt={content.title} />
                             ))}
                             {content.txt.map((txt, txtIndex) => (
                                 <span className="contents" key={txtIndex}>{txt}</span>
@@ -86,7 +86,7 @@ const CarouselImg: React.FC<CarouselImgProp> = ({ userId }) => {
                         <div className="rightBox">
                             <h3>추억을 열어 보세요.</h3>
                             {content.urlRight.map((url, urlIndex) => (
-                                <img key={urlIndex} src={url} width={165} alt="이미지" />
+                                <img key={urlIndex} src={url} width={165} alt={content.title} />
                             ))}
                             <button 
                                 className="entrance"
