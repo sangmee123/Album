@@ -28,6 +28,5 @@ module.exports = {
         "react"
     ],
     "rules": {
-        "no-useless-escape": "off"
     }
 }
