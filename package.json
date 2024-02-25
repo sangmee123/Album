@@ -57,13 +57,8 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/jwt-decode": "^3.1.0",
     "@types/react-js-pagination": "^3.0.7",
-    "eslint": "^8.57.0",
-    "eslint-plugin-html": "^8.0.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^6.1.1",
+    "@typescript-eslint/parser": "^6.0.0",
     "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-standard": "^5.0.0",
     "sass": "^1.69.5"
   }
 }
