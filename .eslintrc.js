@@ -4,7 +4,7 @@ module.exports = {
         "es2021": true
     },
     "extends": [
-        "standard-with-typescript",
+        "eslint:recommended",
         "plugin:react/recommended"
     ],
     "overrides": [
@@ -28,5 +28,6 @@ module.exports = {
         "react"
     ],
     "rules": {
+        "no-useless-escape": "off"
     }
 }
