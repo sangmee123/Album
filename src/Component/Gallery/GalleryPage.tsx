@@ -18,7 +18,7 @@ const GalleryPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const title: string = location.state.albumTitle;
-
+    
     const userId = useSelector((state: RootState) => state.auth.loginForm.id);
     const username = useSelector((state: RootState) => state.user.username);
     const darkMode = useSelector((state: RootState) => state.auth.darkMode);
@@ -39,12 +39,28 @@ const GalleryPage = () => {
         }
     }, [tokenExpired, navigate, dispatch]);
 
-    useEffect(() => {        
-        /* 앨범 title 리스트 불러오기 */
+    useEffect(() => {     
+        // 로그인 정보 가져오기
+        const token = localStorage.getItem('token');
         const postData = new FormData();
-        postData.append('id', userId);
+        postData.append('token', token ?? '');
 
-        axios.post('../../Data/GET_db.php', postData)
+        axios.post('../../Data/login.php', postData)
+        .then(res => {
+            const data = res.data;
+            if (data.success) { 
+                dispatch(setForm({ username : data.username + '님' }));
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+        /* 앨범 title 리스트 불러오기 */
+        const postTitle = new FormData();
+        postTitle.append('id', userId);
+
+        axios.post('http://localhost/album/src/Data/GET_db.php', postTitle)
         .then(res => {
             const data = res.data;
             const titleInfo: List[] = [];
@@ -58,7 +74,7 @@ const GalleryPage = () => {
         .catch(error => {
             console.log(error);
         });
-    }, [userId]);
+    }, [userId, dispatch]);
 
     const handleDarkMode = useCallback(() => {
         dispatch(setDarkMode(!darkMode));
