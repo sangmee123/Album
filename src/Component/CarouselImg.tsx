@@ -61,8 +61,8 @@ const CarouselImg: React.FC<CarouselImgProp> = ({ userId }) => {
 
     const handleButton = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
         const albumTitle = e.currentTarget.name;
-        navigate(`/album/${albumTitle}`, { state: { albumTitle }, replace: true });
-    }, [navigate]);
+        navigate(`/album/${albumTitle}`, { state: { albumTitle, userId }, replace: true });
+    }, [navigate, userId]);
     
     return (
         <>

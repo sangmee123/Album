@@ -8,8 +8,6 @@ import galleryData4 from '../../ImageData/galleryData4';
 import blankData from '../../ImageData/blankData';
 import '../../style/Images.scss';
 import Paging from './Paging';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
 
 interface List {
     title: string;
@@ -29,7 +27,7 @@ const Images: React.FC<Props>= ({ titleProp }) => {
     const navigate = useNavigate();
     const location = useLocation(); 
     
-    const userId = useSelector((state: RootState) => state.auth.loginForm.id);
+    const userId: string = location.state.userId;
     const [title, setTitle] = useState(''); // sidebar에서 클릭한 title 값 넣기
     const [galleryDataArr, setGalleryDataArr] = useState<GalleryDataArr>({});
 

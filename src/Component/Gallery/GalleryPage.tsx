@@ -17,9 +17,10 @@ const GalleryPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
-    const title: string = location.state.albumTitle;
     
-    const userId = useSelector((state: RootState) => state.auth.loginForm.id);
+    const title: string = location.state.albumTitle;
+    const userId: string = location.state.userId;
+
     const username = useSelector((state: RootState) => state.user.username);
     const darkMode = useSelector((state: RootState) => state.auth.darkMode);
     

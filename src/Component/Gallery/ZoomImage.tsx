@@ -15,14 +15,16 @@ const ZoomImage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
+    
     const title: string = location.state.albumTitle;
+    const userId: string = location.state.userId;
 
     const imageData: Image[] = location.state.totalImage;
     const pageNumber: number = location.state.page - 1;
     const currentIndex: number = (pageNumber * 20) + location.state.id;
 
     const { tokenExpired } = useTokenCheck(); // 토큰 체크 훅 사용
-    
+
     useEffect(() => {
         // 토큰 체크
         if (tokenExpired) {
@@ -45,7 +47,7 @@ const ZoomImage = () => {
         <div className="full_image">
             <button 
                 className='backBtn' 
-                onClick={() => navigate(`/album/${title}`, {state: { albumTitle: title}, replace: true })}
+                onClick={() => navigate(`/album/${title}`, {state: { albumTitle: title, userId}, replace: true })}
             >⇦</button>
             <br /><span className='back'>back</span>
             

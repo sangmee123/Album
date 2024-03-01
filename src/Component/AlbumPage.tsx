@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDarkMode, logout } from '../redux/features/authSlice';
@@ -12,15 +12,16 @@ import '../style/Album.scss';
 const AlbumPage = ()  => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const userId: string = location.state.id;
+    const username = useSelector((state: RootState) => state.user.username);
+    const darkMode = useSelector((state: RootState) => state.auth.darkMode);
+    const { tokenExpired } = useTokenCheck(); // 토큰 체크 훅 사용
 
     const [loading, setLoading] = useState(true); // 데이터 로딩 상태
     const [btnLogout, setBtnLogout] = useState(true); // 로그아웃 버튼 상태
 
-    const userId = useSelector((state: RootState) => state.auth.loginForm.id);
-    const username = useSelector((state: RootState) => state.user.username);
-    const darkMode = useSelector((state: RootState) => state.auth.darkMode);
-    const { tokenExpired } = useTokenCheck(); // 토큰 체크 훅 사용
-  
     useEffect(() => {
         // 토큰 체크
         if (tokenExpired) {

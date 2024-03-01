@@ -42,7 +42,7 @@ const LoginBox = () => {
                     
                     // 로그인 성공 알림을 띄우고, 앨범 페이지로 이동
                     alert(res.data.message);
-                    navigate('/album');
+                    navigate('/album', { state: { id }});
                 } else { 
                     // 로그인 실패
                     alert(res.data.message);
@@ -52,7 +52,7 @@ const LoginBox = () => {
                 alert('서버가 연결되어 있지 않습니다.');
             });
         }
-    }, [isActive, navigate]);
+    }, [isActive, navigate, id]);
 
     // // 상태 및 변수를 로깅
     // console.log('id:', id);
