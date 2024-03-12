@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,16 +13,11 @@ import '../style/LoginBox.scss';
 const LoginBox = () => {    
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
+    dispatch(setTokenExpired(false)); // 로그아웃일 때 토큰 만료 false
+    
     const form = useSelector((state: RootState) => state.auth.loginForm);
     const { id, password } = form;
-    const [isActive, setIsActive] = useState(false);
-    
-    useEffect(() => {
-        // id와 password 값의 유무에 따른 활성화 상태 
-        setIsActive(id !== '' && password !== '');
-        dispatch(setTokenExpired(false)); // 로그아웃일 때 토큰 만료 false
-    }, [id, password, dispatch]);
+    const isActive = id !== '' && password !== ''; // id와 password 값의 유무에 따른 활성화 상태 
 
     const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(setLoginForm({ [e.target.name]: e.target.value })); // authSlice에서 제네릭 타입을 설정한 이유
@@ -34,7 +29,7 @@ const LoginBox = () => {
         const formData = new FormData(formElement); 
     
         if (isActive) {
-            axios.post('../Data/login_check.php', formData)
+            axios.post('http://localhost/album/src/Data/login_check.php', formData)
             .then(res => {
                 if (res.data.success) { 
                     // 로그인 성공 시 토큰을 로컬 스토리지에 저장

@@ -46,7 +46,7 @@ const GalleryPage = () => {
         const postData = new FormData();
         postData.append('token', token ?? '');
 
-        axios.post('../../Data/login.php', postData)
+        axios.post('http://localhost/album/src/Data/login.php', postData)
         .then(res => {
             const data = res.data;
             if (data.success) { 

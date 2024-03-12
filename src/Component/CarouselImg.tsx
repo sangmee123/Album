@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Carousel from "react-material-ui-carousel";
 import axios from 'axios';
 
@@ -11,13 +11,12 @@ interface ImageData {
     txt: string[];
 }
 
-interface CarouselImgProp {
-    userId: string;
-}
-
-const CarouselImg: React.FC<CarouselImgProp> = ({ userId }) => {
-    const [imageData, setImageData] = useState<ImageData[]>([]);
+const CarouselImg = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const userId: string = location.state.id;
+    
+    const [imageData, setImageData] = useState<ImageData[]>([]);
 
     useEffect(() => {        
         const postData = new FormData();
@@ -35,7 +34,7 @@ const CarouselImg: React.FC<CarouselImgProp> = ({ userId }) => {
         // });
 
         // 이미지 관련 데이터 불러오기
-        axios.post('../Data/GET_db.php', postData)
+        axios.post('http://localhost/album/src/Data/GET_db.php', postData)
         .then(res => {
             const data = res.data;
             const updatedImageData: ImageData[] = [];
