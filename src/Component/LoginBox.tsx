@@ -17,10 +17,12 @@ const LoginBox = () => {
     
     const form = useSelector((state: RootState) => state.auth.loginForm);
     const { id, password } = form;
-    const isActive = id !== '' && password !== ''; // id와 password 값의 유무에 따른 활성화 상태 
+    // id와 password 값의 유무에 따른 활성화 여부
+    const isActive = id !== '' && password !== ''; 
 
     const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(setLoginForm({ [e.target.name]: e.target.value })); // authSlice에서 제네릭 타입을 설정한 이유
+        // authSlice에서 제네릭 타입을 설정한 이유
+        dispatch(setLoginForm({ [e.target.name]: e.target.value })); 
     }, [dispatch]); 
 
     const handleFormSubmit = useCallback((e: React.FormEvent) => {
@@ -37,7 +39,7 @@ const LoginBox = () => {
                     
                     // 로그인 성공 알림을 띄우고, 앨범 페이지로 이동
                     alert(res.data.message);
-                    navigate('/album', { state: { id }});
+                    navigate('/album', { state: { userId: id }}); 
                 } else { 
                     // 로그인 실패
                     alert(res.data.message);

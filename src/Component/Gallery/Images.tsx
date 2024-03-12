@@ -28,11 +28,12 @@ const Images: React.FC<Props>= ({ titleProp }) => {
     const location = useLocation(); 
     
     const userId: string = location.state.userId;
-    const [title, setTitle] = useState(''); // sidebar에서 클릭한 title 값 넣기
+    const title = titleProp;
+    // const [title, setTitle] = useState(''); // sidebar에서 클릭한 title 값 넣기
     const [galleryDataArr, setGalleryDataArr] = useState<GalleryDataArr>({});
 
     useEffect(() => {
-        setTitle(titleProp); // sidebar에서 클릭한 title 변경
+        // setTitle(titleProp); // sidebar에서 클릭한 title 변경
 
         /* 앨범 title 리스트 불러오기 */
         const postData = new FormData();
@@ -64,8 +65,8 @@ const Images: React.FC<Props>= ({ titleProp }) => {
     const [page, setPage] = useState(1); // 현재 페이지 번호  
     const postPerPage: number = 20; // 페이지 당 이미지 개수
 
-    const indexOfLastPost: number = page * postPerPage; 
-    const indexOfFirtPost: number = indexOfLastPost - postPerPage; 
+    const indexOfLastPost: number = page * postPerPage; // 현재 페이지의 마지막 이미지 번호
+    const indexOfFirtPost: number = indexOfLastPost - postPerPage; // 현재 페이지의 첫번째 이미지 번호
    
     let currentPost: Image[] = []; // 현재 페이지에 보여줄 전체 이미지
     let totalImage: Image[] = []; // 현재 title에 해당하는 전체 이미지
@@ -77,9 +78,7 @@ const Images: React.FC<Props>= ({ titleProp }) => {
         totalImgCount = galleryDataArr[titleProp].length;
     }
 
-    const handlePageChange = useCallback((page: number) => {
-        setPage(page);
-    }, []);
+    const handlePageChange = (page: number) => setPage(page)
     
     const access = '타계정 접근 권한 없음';
 

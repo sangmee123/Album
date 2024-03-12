@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Carousel from "react-material-ui-carousel";
 import axios from 'axios';
 
@@ -11,12 +11,13 @@ interface ImageData {
     txt: string[];
 }
 
-const CarouselImg = () => {
-    const navigate = useNavigate();
-    const location = useLocation();
-    const userId: string = location.state.id;
-    
+interface CarouselImgProp {
+    userId: string;
+}
+
+const CarouselImg: React.FC<CarouselImgProp> = ({ userId }) => {
     const [imageData, setImageData] = useState<ImageData[]>([]);
+    const navigate = useNavigate();
 
     useEffect(() => {        
         const postData = new FormData();

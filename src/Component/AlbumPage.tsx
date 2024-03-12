@@ -14,7 +14,11 @@ const AlbumPage = ()  => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const userId: string = location.state.id;
+    let userId = useSelector((state: RootState) => state.auth.loginForm.id);
+    /* 새로고침 or Gallery 페이지에서 backBtn 누르면,
+       아이디 상태 값이 초기화 되는 문제 보안 */
+    userId = location.state.userId; 
+    
     const username = useSelector((state: RootState) => state.user.username);
     const darkMode = useSelector((state: RootState) => state.auth.darkMode);
     const { tokenExpired } = useTokenCheck(); // 토큰 체크 훅 사용
@@ -95,7 +99,7 @@ const AlbumPage = ()  => {
             >  
                 서버가 연결되어 있지 않습니다.
             </div> 
-            <CarouselImg />
+            <CarouselImg userId={userId} />
         </div>
     );
 };

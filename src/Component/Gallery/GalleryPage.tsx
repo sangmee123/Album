@@ -108,7 +108,7 @@ const GalleryPage = () => {
                 />
                 <button 
                     className='backBtn' 
-                    onClick={() => navigate('/album', { replace: true })}
+                    onClick={() => navigate('/album', {state : {userId}, replace: true })}
                 >
                     ⇦
                 </button>
