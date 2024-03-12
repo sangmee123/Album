@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import galleryData1 from '../../ImageData/galleryData1';
@@ -24,17 +24,15 @@ interface GalleryDataArr {
 }
 
 const Images: React.FC<Props>= ({ titleProp }) => {
+    const title = titleProp;
+
     const navigate = useNavigate();
     const location = useLocation(); 
-    
     const userId: string = location.state.userId;
-    const title = titleProp;
-    // const [title, setTitle] = useState(''); // sidebar에서 클릭한 title 값 넣기
+    
     const [galleryDataArr, setGalleryDataArr] = useState<GalleryDataArr>({});
 
     useEffect(() => {
-        // setTitle(titleProp); // sidebar에서 클릭한 title 변경
-
         /* 앨범 title 리스트 불러오기 */
         const postData = new FormData();
         postData.append('id', userId);
@@ -89,7 +87,8 @@ const Images: React.FC<Props>= ({ titleProp }) => {
                     className='title' 
                     style={{ display: title !== '' ? "none" : "inline"}}
                 >   {/*title 초기 값 => 앨범 펼쳐보기에 해당되는 title 값*/}
-                    {location.state.albumTitle}
+                    {/* {location.state.albumTitle} */}
+                    {title}
                 </p>
                 <p 
                     className='title'
