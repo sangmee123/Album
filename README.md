@@ -127,6 +127,6 @@ https://github.com/sangmee123/Album/assets/69633033/2fb744d0-e6dd-4040-a41e-3e6a
 <img width="400" src="https://github.com/sangmee123/Album/assets/69633033/21d48d6c-3da4-4e99-8ca5-cdcf82b8b44e">
 
 
-## 🎬 갤러리 페이지 시연 영상
+### 🎬 갤러리 페이지 시연 영상
 
 https://github.com/sangmee123/Album/assets/69633033/b47f9a8e-e996-4417-8f84-24b684318d02
