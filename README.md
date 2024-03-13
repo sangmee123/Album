@@ -14,7 +14,8 @@
   - 🌞 Light 모드 & 🌜 Dark 모드
 - 🎬 [서버 Off일 때 시연 영상](#-서버-off일-때)
 - 🎬 [로그인 과정 & 앨범 페이지 시연 영상](#-로그인-과정-시연-영상)
-- 🎬 [갤러리 페이지 시연 영상](#-갤러리-페이지-시연-영상)
+- [갤러리 페이지](#-갤러리-페이지)
+  - 🎬 [갤러리 페이지 시연 영상](#-갤러리-페이지-시연-영상)
   
 <br>
 
@@ -116,6 +117,14 @@ https://github.com/sangmee123/Album/assets/69633033/cdb64f74-b931-49d2-86a8-3d3d
 https://github.com/sangmee123/Album/assets/69633033/2fb744d0-e6dd-4040-a41e-3e6a41ffa71f
 
 <br>
+
+## 🎬 갤러리 페이지
+
+### 🌞 Light 모드  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🌜 Dark 모드
+
+<img width="400" src="https://github.com/sangmee123/Album/assets/69633033/0d87b68c-9ad4-44ee-a6cf-7d306b1b5909">
+<img width="400" src="https://github.com/sangmee123/Album/assets/69633033/21d48d6c-3da4-4e99-8ca5-cdcf82b8b44e">
+
 
 ## 🎬 갤러리 페이지 시연 영상
 
