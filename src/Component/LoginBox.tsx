@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,12 +13,15 @@ import '../style/LoginBox.scss';
 const LoginBox = () => {    
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    dispatch(setTokenExpired(false)); // 로그아웃일 때 토큰 만료 false
+    
+    useEffect(() => {
+        // 로그아웃일 때 토큰 만료 false
+        dispatch(setTokenExpired(false)); 
+    }, [dispatch]);
     
     const form = useSelector((state: RootState) => state.auth.loginForm);
     const { id, password } = form;
-    // id와 password 값의 유무에 따른 활성화 여부
-    const isActive = id !== '' && password !== ''; 
+    const isActive = id !== '' && password !== ''; // id와 password 값의 유무에 따른 활성화 여부
 
     const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         // authSlice에서 제네릭 타입을 설정한 이유
